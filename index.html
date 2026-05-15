@@ -3897,17 +3897,11 @@ function closeModal(){
   if(!modal.classList.contains("open"))return;  // already closed — avoid double-fire
   modal.classList.remove("open");
   // If we pushed a history entry when opening, pop it to clean up the URL
-  if(history.state&&history.state.modalOpen)history.back();
+  if(history.state&&history.state.modalOpen){window.__mycvkhProgrammaticBack=true;history.back();}
 }
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 
-// Swipe-back / browser-back closes the modal instead of leaving the page
-window.addEventListener('popstate',function(){
-  const modal=document.getElementById("modal");
-  if(modal.classList.contains("open"))modal.classList.remove("open");
-  // Note: closeModal() already removed the class before history.back() was called,
-  // so this branch only fires when the user swipes back themselves.
-});
+// Modal swipe-back is now handled by handleMobileBack (universal, all devices).
 
 function injectPhotos(container){
   if(!userPhotoDataURL||!container)return;
@@ -4808,9 +4802,17 @@ document.addEventListener('change',function(){
 
 /* ── UNSAVED WARNING ── */
 window.addEventListener('beforeunload',function(e){
+  // Always warn if user has progressed past step 1
+  if(currentScreen>1){
+    e.preventDefault();
+    e.returnValue='Are you sure you want to leave? Changes may not be saved.';
+    return;
+  }
+  // On step 1, warn if any key field has been filled
   const fields=['in-name','in-job-title','in-apply-for','in-objective','in-phone','in-email'];
-  if(currentScreen===1&&fields.some(id=>{const el=document.getElementById(id);return el&&el.value.trim().length>0;})){
-    e.preventDefault();e.returnValue='';
+  if(fields.some(id=>{const el=document.getElementById(id);return el&&el.value.trim().length>0;})){
+    e.preventDefault();
+    e.returnValue='Are you sure you want to leave? Changes may not be saved.';
   }
 });
 
@@ -4868,8 +4870,6 @@ window.addEventListener('beforeunload',function(e){
   }
 
   function setMobileHistory(step, replace){
-    if(!isMobileBackMode()) return;
-
     const safeStep = Math.max(1, Number(step) || 1);
     const url = new URL(window.location.href);
     url.hash = 'step' + safeStep;
@@ -4926,7 +4926,7 @@ window.addEventListener('beforeunload',function(e){
 
       const result = originalGoToRef.apply(this, arguments);
 
-      if(isMobileBackMode() && !suppressNextPush){
+      if(!suppressNextPush){
         setMobileHistory(nextStep, false);
       }
 
@@ -4952,7 +4952,8 @@ window.addEventListener('beforeunload',function(e){
   }
 
   function handleMobileBack(){
-    if(!isMobileBackMode()) return;
+    // Programmatic back (closeModal cleanup) — ignore, don't navigate steps
+    if(window.__mycvkhProgrammaticBack){window.__mycvkhProgrammaticBack=false;return;}
     if(allowRealExit) return;
 
     if(closeAnyOpenModal()){
@@ -4975,12 +4976,9 @@ window.addEventListener('beforeunload',function(e){
 
   function initMobileBackProtection(){
     installGoToWrapper();
-
-    if(isMobileBackMode()){
-      currentMobileStep = getVisibleStep();
-      setMobileHistory(currentMobileStep, true);
-      setMobileHistory(currentMobileStep, false);
-    }
+    currentMobileStep = getVisibleStep();
+    setMobileHistory(currentMobileStep, true);
+    setMobileHistory(currentMobileStep, false);
   }
 
   window.addEventListener('popstate', handleMobileBack);
