@@ -397,6 +397,7 @@
     .tpl-zoom-btn.preview-btn{background:rgba(255,255,255,.92);color:#1B2E5E}
     .tpl-info{padding:14px 16px 16px;border-top:1px solid var(--line)}
     .tpl-name{font-weight:900;font-size:14px;color:#1B2E5E}
+    .tpl-code{font-size:10.5px;font-weight:600;color:#94a3b8;letter-spacing:.06em;margin-top:3px;}
     .tpl-badge-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
     .tpl-pill{display:inline-flex;align-items:center;gap:3px;background:#EAF4FB;color:#1B2E5E;border-radius:999px;font-size:11px;font-weight:700;padding:3px 10px}
     .tpl-pill.green{background:#f0faf4;color:#16a34a}
@@ -437,7 +438,8 @@
       .modal-cv-wrap{
         height:calc(100vh - 145px);
         padding:10px;
-        overflow:auto;
+        overflow-x:hidden;
+        overflow-y:auto;
         -webkit-overflow-scrolling:touch;
         display:block;
       }
@@ -448,14 +450,14 @@
         display:flex;
         align-items:flex-start;
         justify-content:center;
-        overflow:visible;
+        overflow:hidden;
       }
       .a4-page{
         width:210mm;
         min-height:297mm;
         max-width:none;
         flex:0 0 auto;
-        transform-origin:top center;
+        transform-origin:top left;
       }
       .modal-actions{flex-direction:column-reverse;gap:8px}
       .modal-actions .btn{width:100%;text-align:center}
@@ -1951,15 +1953,18 @@ function goTo(n){
 }
 function updatePaymentScreen(){
   const tname=TEMPLATES[selectedTpl]?.n||'Template';
-  const el=document.getElementById("por-tpl-val");if(el)el.textContent=tname;
+  const tcode=formatTemplateCode(TEMPLATES[selectedTpl]?.id||'');
+  const tnameWithCode=tname+(tcode?' '+tcode:'');
+  const el=document.getElementById("por-tpl-val");if(el)el.textContent=tnameWithCode;
   const el2=document.getElementById("por-lang-val");if(el2)el2.textContent=lang==="en"?"English":"ខ្មែរ";
-  const el3=document.getElementById("dl-tpl");if(el3)el3.textContent=tname;
+  const el3=document.getElementById("dl-tpl");if(el3)el3.textContent=tnameWithCode;
 }
 function updateDownloadScreen(){
   const name=(document.getElementById("in-name")?.value)||"";
   const tname=TEMPLATES[selectedTpl]?.n||"Template";
+  const tcode=formatTemplateCode(TEMPLATES[selectedTpl]?.id||'');
   const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
-  set("dl-name",name);set("dl-name-inline",name);set("dl-tpl",tname);
+  set("dl-name",name);set("dl-name-inline",name);set("dl-tpl",tname+(tcode?' '+tcode:''));
   set("dl-lang",lang==="en"?"English":"ខ្មែរ");
   const t=TEMPLATES[selectedTpl];
   const pa=document.getElementById("printArea");
@@ -2048,6 +2053,10 @@ const TEMPLATES = [
     {n:'Sofia Emerald', id:'t39', badges:['New','Split Header'], d:'Emerald split dark header with photo and contact. Light left column for skills and wide right for experience and education.'},
     {n:'Atlas Banner',  id:'t40', badges:['New','Dark Banner'],  d:'Bold dark navy top banner with rectangular photo, name and amber contact row. Clean two-column body for experience and education.'},
     {n:'Bianca Equal',  id:'t41', badges:['New','Equal Split'],  d:'Minimal indigo-accented header with photo and summary. Equal split columns for experience, education, skills and references.'},
+    {n:'Brian Neal',    id:'t42', badges:['New','Mustard Gold'],   d:'Light gray background with mustard-gold accents. Square photo, split-color large name, sidebar with contact and references, experience/education grid, full-width bottom strip for awards, skills, hobbies and languages.'},
+    {n:'Jason Eaton',   id:'t43', badges:['New','Brown Editorial'], d:'Warm cream/paper background with full-width brown header. Large portrait photo on left with boxed education and reference sections. Right column with skills bars, numbered experience and hobbies.'},
+    {n:'Michal Smith',  id:'t44', badges:['New','Black Yellow'],    d:'Dark charcoal sidebar with circular photo, yellow icon circles for contact, skills dots and language list. White main area with yellow vertical accent bar next to large name and clean timeline sections.'},
+    {n:'Clara Smith',   id:'t45', badges:['New','Blue Geometric'],  d:'Dark navy right sidebar with rectangular photo, name, contact and skill bars. White main area with angled geometric navy shapes at top and clean sections for summary, experience and education.'},
 ];
 
 /* ── DATA HELPERS ── */
@@ -2220,6 +2229,10 @@ function buildFullHTML(t){
   if(t.id==='t39') return buildT39(d);
   if(t.id==='t40') return buildT40(d);
   if(t.id==='t41') return buildT41(d);
+  if(t.id==='t42') return buildT42(d);
+  if(t.id==='t43') return buildT43(d);
+  if(t.id==='t44') return buildT44(d);
+  if(t.id==='t45') return buildT45(d);
 return '';
 }
 
@@ -3749,7 +3762,237 @@ function buildT41(d){
   </div>`;
 }
 
+/* ── Templates 42-45: New CV Designs ── */
+
+function buildT42(d){
+  /* Layout: light-gray page (Brian S. Neal style)
+     Header: square photo (top-left) + split-color large name (dark + mustard-gold last word) + title
+     Body: 190px sidebar (Contact Me, References) | main (About Me, Exp + Edu side-by-side grid)
+     Bottom strip (white): Awards | Skills | Hobbies | Languages in 4 equal columns */
+  const GOLD='#c9a84c',DARK='#2a2a2a',BG='#f0eeec',WHITE='#ffffff',MID='#5a5550',LGRAY='#ddd9d3';
+  const photoDiv=`<div style="width:115px;height:130px;min-width:115px;background:#b5afa6;${d.photoCSS}background-size:cover;background-position:center;border:3px solid ${LGRAY};box-sizing:border-box;flex:0 0 115px;"></div>`;
+  const words=(d.name||'Full Name').trim().split(/\s+/);
+  const lastWord=words.length>1?words.pop():'';
+  const firstPart=words.join(' ');
+  const SSH=label=>`<div style="font-size:7.5px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${DARK};border-bottom:2.5px solid ${GOLD};padding-bottom:4px;margin:0 0 10px 0;">${label}</div>`;
+  const MSH=(label,icon)=>`<div style="display:flex;align-items:center;gap:0;margin:0 0 11px 0;"><div style="background:${DARK};color:${GOLD};font-size:7.5px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;padding:5px 10px;white-space:nowrap;">${icon} ${label}</div><div style="height:2px;flex:1;background:${GOLD};"></div></div>`;
+  const BSH=label=>`<div style="font-size:7.5px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${DARK};border-bottom:2.5px solid ${GOLD};padding-bottom:4px;margin:0 0 10px 0;">${label}</div>`;
+  const cRows=[];
+  if(d.phone)    cRows.push(['&#9742;',d.phone]);
+  if(d.email)    cRows.push(['&#9993;',d.email]);
+  if(d.city)     cRows.push(['&#9711;',d.city]);
+  if(d.linkedin) cRows.push(['&#8599;',d.linkedin]);
+  const contactHTML=cRows.map(r=>`<div style="display:flex;align-items:flex-start;gap:7px;margin:0 0 8px 0;"><span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:${GOLD};color:#fff;display:flex;align-items:center;justify-content:center;font-size:7px;flex:0 0 16px;">${r[0]}</span><span style="font-size:8px;color:${MID};line-height:1.4;word-break:break-all;">${cv3033Text(r[1])}</span></div>`).join('');
+  const refHTML=cv3033Arr(d.refItems).slice(0,3).map(r=>`<div style="margin:0 0 10px 0;padding-bottom:9px;border-bottom:1px solid ${LGRAY};"><div style="font-size:8.5px;font-weight:800;color:${DARK};">${cv3033Text(r.name||'Reference Name')}</div>${r.title||r.company?`<div style="font-size:8px;color:${GOLD};">${cv3033Text([r.title,r.company].filter(Boolean).join(', '))}</div>`:''} ${r.phone?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(r.phone)}</div>`:''} ${r.email?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(r.email)}</div>`:''}</div>`).join('');
+  const aboutHTML=d.summary?`<p style="margin:0;font-size:8.5px;color:${MID};line-height:1.65;">${cv3033Text(d.summary)}</p>`:'';
+  const expHTML=cv3033Arr(d.expItems).slice(0,4).map(e=>{
+    const period=cv3033Date(e);
+    const bullets=cv3033Lines(e.resp,2).concat(cv3033Lines(e.ach,1)).map(x=>`<div style="display:flex;align-items:flex-start;gap:5px;margin-top:3px;"><span style="color:${GOLD};font-size:7px;margin-top:2px;">&#9679;</span><span style="font-size:7.8px;color:${MID};line-height:1.4;">${cv3033Text(x)}</span></div>`).join('');
+    return `<div style="margin:0 0 11px 0;padding-left:11px;border-left:2px solid ${GOLD};"><div style="display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;"><div style="font-size:8.8px;font-weight:800;color:${DARK};">${cv3033Text(e.role||'Position')}</div>${period?`<div style="font-size:7.5px;color:${GOLD};white-space:nowrap;">${cv3033Text(period)}</div>`:''}</div>${e.company?`<div style="font-size:8px;color:${MID};">${cv3033Text(e.company)}</div>`:''}${bullets}</div>`;
+  }).join('');
+  const eduHTML=cv3033Arr(d.eduItems).slice(0,3).map(e=>{
+    const period=[e.from,e.to||(e.status==='In Progress'?'Present':'')].filter(Boolean).join(' - ');
+    return `<div style="margin:0 0 10px 0;padding-bottom:9px;border-bottom:1px solid ${LGRAY};"><div style="font-size:8.8px;font-weight:800;color:${DARK};">${cv3033Text(e.major||e.level||'Degree')}</div>${e.school?`<div style="font-size:8px;color:${GOLD};">${cv3033Text(e.school)}</div>`:''}${period?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(period)}</div>`:''}</div>`;
+  }).join('');
+  const awardsHTML=cv3033Arr(d.awardItems).slice(0,3).map(a=>`<div style="margin:0 0 8px 0;"><div style="font-size:8.4px;font-weight:800;color:${DARK};">${cv3033Text(a.name||'Award')}</div>${a.org?`<div style="font-size:7.8px;color:${MID};">${cv3033Text(a.org)}</div>`:''}${a.year?`<div style="font-size:7.5px;color:${GOLD};">${cv3033Text(a.year)}</div>`:''}</div>`).join('');
+  const skillsHTML=[...cv3033Arr(d.techSkillsArr),...cv3033Arr(d.softSkillsArr)].slice(0,6).map(s=>{const pct=Math.max(20,Math.min(100,Number(s.level||3)*20));return `<div style="margin:0 0 7px 0;"><div style="font-size:7.8px;font-weight:800;color:${DARK};margin-bottom:3px;">${cv3033Text(s.name)}</div><div style="height:5px;background:#d5d0c8;border-radius:99px;"><div style="height:5px;width:${pct}%;background:${GOLD};border-radius:99px;"></div></div></div>`;}).join('');
+  const hobbiesHTML=cv3033Arr(d.projItems).slice(0,5).map(p=>`<div style="font-size:8px;color:${MID};margin:0 0 5px 0;">&#11045; ${cv3033Text(p.name)}</div>`).join('');
+  const langsHTML=cv3033Safe(d.languages).split(';').map(l=>l.trim()).filter(Boolean).slice(0,5).map(l=>`<div style="display:flex;align-items:center;gap:7px;margin:0 0 6px 0;"><span style="width:7px;height:7px;border-radius:50%;background:${GOLD};flex:0 0 7px;"></span><span style="font-size:8px;font-weight:800;color:${DARK};">${cv3033Text(l)}</span></div>`).join('');
+  return `<div class="cv-sheet cvb" style="min-height:297mm;background:${BG};font-family:Arial,sans-serif;color:${DARK};box-sizing:border-box;overflow:hidden;font-size:10px;">
+    <div style="display:flex;align-items:flex-end;gap:20px;padding:26px 30px 18px 28px;">
+      ${photoDiv}
+      <div style="flex:1;">
+        <div style="font-size:28px;font-weight:900;line-height:1.05;letter-spacing:-0.5px;"><span style="color:${DARK};">${cv3033Text(firstPart)}</span>${lastWord?` <span style="color:${GOLD};">. ${cv3033Text(lastWord)}</span>`:''}</div>
+        <div style="font-size:9px;letter-spacing:3px;color:${MID};text-transform:uppercase;margin-top:6px;">${cv3033Text(d.title||'Job Title')}</div>
+        <div style="height:3px;width:180px;background:linear-gradient(to right,${GOLD},transparent);margin-top:10px;"></div>
+      </div>
+    </div>
+    <div style="display:flex;padding:0 0 10px 0;">
+      <div style="width:190px;min-width:190px;padding:4px 16px 20px 28px;box-sizing:border-box;">
+        ${SSH('Contact Me')}<div style="margin-bottom:18px;">${contactHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+        ${SSH('References')}${refHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}
+      </div>
+      <div style="flex:1;padding:4px 28px 20px 12px;">
+        ${aboutHTML?`<div style="margin-bottom:16px;">${MSH('About Me','&#9733;')}${aboutHTML}</div>`:''}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+          <div>${MSH('Job Experience','&#9654;')}${expHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+          <div>${MSH('Education','&#9670;')}${eduHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:${WHITE};border-top:2.5px solid ${GOLD};padding:16px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div>${BSH('Awards')}${awardsHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+      <div>${BSH('Skills')}${skillsHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+      <div>${BSH('Hobbies')}${hobbiesHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+      <div>${BSH('Languages')}${langsHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+    </div>
+  </div>`;
+}
+
+function buildT43(d){
+  /* Layout: cream/paper background (Jason Eaton editorial style)
+     Header: full-width warm-brown bar (large name + title + contact row)
+     Body: LEFT col ~36% (large portrait photo → Education box → Reference box → Languages box)
+           RIGHT col ~64% (Skills bars → numbered Job Experience → Hobbies pills) */
+  const BROWN='#7a3718',CREAM='#faf3e8',TAN='#c8a06e',LB='#e8d5b7',DARK='#2d1a0e',MID='#5c3d28';
+  const photoRect=`<div style="width:100%;height:195px;background:#b89a72;${d.photoCSS}background-size:cover;background-position:center;border:2px solid ${BROWN};box-sizing:border-box;"></div>`;
+  const hRows=[];
+  if(d.phone) hRows.push(`&#9742; ${cv3033Text(d.phone)}`);
+  if(d.email) hRows.push(`&#9993; ${cv3033Text(d.email)}`);
+  if(d.city)  hRows.push(`&#9711; ${cv3033Text(d.city)}`);
+  const hContact=hRows.join(`<span style="color:rgba(255,255,255,.4);margin:0 8px;">|</span>`);
+  const BOX=content=>`<div style="border:1.5px solid ${BROWN};padding:12px 13px;margin:0 0 10px 0;">${content}</div>`;
+  const SH=label=>`<div style="background:${BROWN};color:#fff;font-size:7px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:5px 10px;margin:-12px -13px 10px -13px;">${label}</div>`;
+  const RSH=label=>`<div style="background:${BROWN};color:#fff;font-size:7px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:5px 10px;margin:0 0 10px 0;">${label}</div>`;
+  const skillsHTML=[...cv3033Arr(d.techSkillsArr),...cv3033Arr(d.softSkillsArr)].slice(0,7).map(s=>{const pct=Math.max(20,Math.min(100,Number(s.level||3)*20));return `<div style="margin:0 0 8px 0;"><div style="font-size:8px;font-weight:800;color:${DARK};margin-bottom:3px;">${cv3033Text(s.name)}</div><div style="height:5px;background:${LB};border-radius:2px;"><div style="height:5px;width:${pct}%;background:${BROWN};border-radius:2px;"></div></div></div>`;}).join('');
+  const expHTML=cv3033Arr(d.expItems).slice(0,3).map((e,i)=>{
+    const period=cv3033Date(e);
+    const bullets=cv3033Lines(e.resp,2).map(x=>`<div style="font-size:7.8px;color:${MID};line-height:1.4;padding-left:10px;">&#8212; ${cv3033Text(x)}</div>`).join('');
+    return `<div style="margin:0 0 12px 0;display:flex;gap:10px;align-items:flex-start;"><div style="font-size:24px;font-weight:900;color:${BROWN};line-height:1;flex:0 0 24px;opacity:.3;margin-top:2px;">${i+1}</div><div style="flex:1;"><div style="font-size:9px;font-weight:900;color:${DARK};">${cv3033Text(e.role||'Position')}</div><div style="font-size:8px;color:${TAN};font-style:italic;">${cv3033Text([e.company,period].filter(Boolean).join(' · '))}</div>${bullets}</div></div>`;
+  }).join('');
+  const eduHTML=cv3033Arr(d.eduItems).slice(0,2).map(e=>{
+    const period=[e.from,e.to||(e.status==='In Progress'?'Present':'')].filter(Boolean).join(' - ');
+    return `<div style="margin:0 0 9px 0;"><div style="font-size:8.5px;font-weight:800;color:${DARK};">${cv3033Text(e.major||e.level||'Degree')}</div>${e.school?`<div style="font-size:8px;color:${BROWN};">${cv3033Text(e.school)}</div>`:''}${period?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(period)}</div>`:''}</div>`;
+  }).join('');
+  const refHTML=cv3033Arr(d.refItems).slice(0,2).map(r=>`<div style="margin:0 0 8px 0;"><div style="font-size:8.5px;font-weight:800;color:${DARK};">${cv3033Text(r.name||'Reference Name')}</div>${r.title||r.company?`<div style="font-size:8px;color:${BROWN};">${cv3033Text([r.title,r.company].filter(Boolean).join(', '))}</div>`:''}${r.phone?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(r.phone)}</div>`:''}</div>`).join('');
+  const langsHTML=cv3033Safe(d.languages).split(';').map(l=>l.trim()).filter(Boolean).slice(0,5).map(l=>`<span style="display:inline-block;background:${BROWN};color:#fff;font-size:7.5px;font-weight:800;padding:3px 10px;border-radius:2px;margin:0 4px 4px 0;">${cv3033Text(l)}</span>`).join('');
+  const hobbiesHTML=cv3033Arr(d.projItems).slice(0,5).map(p=>`<span style="display:inline-flex;align-items:center;gap:5px;border:1.5px solid ${BROWN};color:${BROWN};font-size:7.5px;font-weight:800;padding:3px 10px;border-radius:2px;margin:0 5px 5px 0;">&#9670; ${cv3033Text(p.name)}</span>`).join('');
+  return `<div class="cv-sheet cvb" style="min-height:297mm;background:${CREAM};font-family:Georgia,serif;color:${DARK};box-sizing:border-box;overflow:hidden;font-size:10px;">
+    <div style="background:${BROWN};padding:20px 28px;">
+      <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.1;">${cv3033Text(d.name||'Full Name')}</div>
+      <div style="font-size:9px;color:${TAN};letter-spacing:3px;text-transform:uppercase;margin-top:4px;">${cv3033Text(d.title||'Job Title')}</div>
+      ${hContact?`<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:8px;color:rgba(255,255,255,.85);">${hContact}</div>`:''}
+    </div>
+    <div style="display:flex;align-items:flex-start;">
+      <div style="width:36%;min-width:36%;padding:16px 14px 20px 18px;box-sizing:border-box;border-right:1.5px solid ${LB};">
+        <div style="margin:0 0 12px 0;">${photoRect}</div>
+        ${BOX(SH('Education')+eduHTML)}
+        ${BOX(SH('References')+refHTML)}
+        ${langsHTML?BOX(SH('Languages')+`<div style="display:flex;flex-wrap:wrap;gap:4px;">${langsHTML}</div>`):''}
+      </div>
+      <div style="flex:1;padding:16px 18px 20px 16px;">
+        <div style="margin-bottom:14px;">${RSH('Skills')}${skillsHTML}</div>
+        <div style="margin-bottom:14px;">${RSH('Job Experience')}${expHTML||`<div style="font-size:8px;color:#aaa;">&#8212;</div>`}</div>
+        ${hobbiesHTML?`<div>${RSH('Hobbies')}<div style="display:flex;flex-wrap:wrap;gap:4px;">${hobbiesHTML}</div></div>`:''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildT44(d){
+  /* Layout: dark charcoal left sidebar 195px (circular photo, yellow-icon contact circles,
+             5-dot skills, language dots, interest pills)
+             White main right: 4px yellow vertical accent bar + large name, About Me,
+             Education (dot markers), Work Experience (yellow left-border), References (2-col) */
+  const BLACK='#1c1c1c',YLW='#f5c518',WHITE='#ffffff',MID='#555555',TEXT='#1a1a1a';
+  const photoHTML=cv3033Photo(d,88,`3px solid ${YLW}`,'display:block;margin:0 auto 16px;');
+  const cRows=[];
+  if(d.phone)    cRows.push(['&#9742;',d.phone]);
+  if(d.email)    cRows.push(['&#9993;',d.email]);
+  if(d.city)     cRows.push(['&#9711;',d.city]);
+  if(d.linkedin) cRows.push(['&#8599;',d.linkedin]);
+  const sideContactHTML=cRows.map(r=>`<div style="display:flex;align-items:flex-start;gap:8px;margin:0 0 9px 0;"><span style="width:18px;height:18px;min-width:18px;border-radius:50%;background:${YLW};display:flex;align-items:center;justify-content:center;font-size:7px;color:${BLACK};flex:0 0 18px;">${r[0]}</span><span style="font-size:7.8px;color:rgba(255,255,255,.78);line-height:1.4;word-break:break-all;">${cv3033Text(r[1])}</span></div>`).join('');
+  const sideSkillsHTML=[...cv3033Arr(d.techSkillsArr),...cv3033Arr(d.softSkillsArr)].slice(0,7).map(s=>{
+    const level=Math.max(1,Math.min(5,Number(s.level||3)));
+    const dots=[1,2,3,4,5].map(i=>`<span style="width:7px;height:7px;border-radius:50%;display:inline-block;background:${i<=level?YLW:'rgba(255,255,255,.18)'};"></span>`).join('');
+    return `<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin:0 0 8px 0;"><span style="font-size:8px;color:rgba(255,255,255,.82);font-weight:700;">${cv3033Text(s.name)}</span><span style="display:flex;gap:3px;">${dots}</span></div>`;
+  }).join('');
+  const sideLangsHTML=cv3033Safe(d.languages).split(';').map(l=>l.trim()).filter(Boolean).slice(0,4).map(l=>`<div style="display:flex;align-items:center;gap:7px;margin:0 0 7px 0;"><span style="width:7px;height:7px;border-radius:50%;background:${YLW};flex:0 0 7px;"></span><span style="font-size:8px;color:rgba(255,255,255,.82);font-weight:700;">${cv3033Text(l)}</span></div>`).join('');
+  const sideInterestsHTML=cv3033Arr(d.projItems).slice(0,5).map(p=>`<span style="display:inline-block;border:1px solid rgba(245,197,24,.5);color:rgba(255,255,255,.82);font-size:7.5px;font-weight:700;padding:2px 8px;border-radius:999px;margin:0 4px 4px 0;">${cv3033Text(p.name)}</span>`).join('');
+  const SSH=label=>`<div style="font-size:7.5px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${YLW};margin:0 0 9px 0;padding-bottom:4px;border-bottom:1px solid rgba(245,197,24,.35);">${label}</div>`;
+  const MSH=label=>`<div style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;"><div style="font-size:8.5px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${TEXT};">${label}</div><div style="height:1.5px;flex:1;background:#e0e0e0;"></div></div>`;
+  const aboutHTML=d.summary?`<p style="margin:0;font-size:8.5px;color:${MID};line-height:1.65;">${cv3033Text(d.summary)}</p>`:'';
+  const eduHTML=cv3033Arr(d.eduItems).slice(0,3).map(e=>{
+    const period=[e.from,e.to||(e.status==='In Progress'?'Present':'')].filter(Boolean).join(' - ');
+    return `<div style="display:flex;gap:12px;margin:0 0 11px 0;align-items:flex-start;"><div style="width:8px;min-width:8px;height:8px;border-radius:50%;background:${YLW};margin-top:4px;flex:0 0 8px;"></div><div style="flex:1;"><div style="font-size:8.8px;font-weight:800;color:${TEXT};">${cv3033Text(e.major||e.level||'Degree')}</div>${e.school?`<div style="font-size:8px;color:${MID};">${cv3033Text(e.school)}</div>`:''}${period?`<div style="font-size:7.5px;color:#888;">${cv3033Text(period)}</div>`:''}</div></div>`;
+  }).join('');
+  const expHTML=cv3033Arr(d.expItems).slice(0,4).map(e=>{
+    const period=cv3033Date(e);
+    const bullets=cv3033Lines(e.resp,2).concat(cv3033Lines(e.ach,1)).map(x=>`<div style="display:flex;align-items:flex-start;gap:5px;margin-top:3px;"><span style="color:${YLW};font-size:7px;margin-top:2px;">&#9658;</span><span style="font-size:7.8px;color:${MID};line-height:1.4;">${cv3033Text(x)}</span></div>`).join('');
+    return `<div style="margin:0 0 12px 0;padding-left:12px;border-left:2px solid ${YLW};"><div style="display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;"><div style="font-size:8.8px;font-weight:800;color:${TEXT};">${cv3033Text(e.role||'Position')}</div>${period?`<div style="font-size:7.5px;color:#888;white-space:nowrap;">${cv3033Text(period)}</div>`:''}</div>${e.company?`<div style="font-size:8px;color:${MID};">${cv3033Text(e.company)}</div>`:''}${bullets}</div>`;
+  }).join('');
+  const refHTML=cv3033Arr(d.refItems).slice(0,2).map(r=>`<div style="margin:0 0 10px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div><div style="font-size:8.5px;font-weight:800;color:${TEXT};">${cv3033Text(r.name||'Reference Name')}</div>${r.title||r.company?`<div style="font-size:8px;color:${MID};">${cv3033Text([r.title,r.company].filter(Boolean).join(', '))}</div>`:''}</div><div>${r.phone?`<div style="font-size:7.8px;color:${MID};">${cv3033Text(r.phone)}</div>`:''}${r.email?`<div style="font-size:7.8px;color:${MID};">${cv3033Text(r.email)}</div>`:''}</div></div>`).join('');
+  return `<div class="cv-sheet cvb" style="min-height:297mm;background:${WHITE};font-family:Arial,sans-serif;color:${TEXT};box-sizing:border-box;overflow:hidden;font-size:10px;display:flex;">
+    <div style="width:195px;min-width:195px;background:${BLACK};padding:26px 18px 20px 18px;box-sizing:border-box;">
+      ${photoHTML}
+      <div style="margin:0 0 18px 0;">${SSH('Contact')}${sideContactHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+      <div style="margin:0 0 18px 0;">${SSH('Skills')}${sideSkillsHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+      <div style="margin:0 0 18px 0;">${SSH('Language')}${sideLangsHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+      <div>${SSH('Interests')}${sideInterestsHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+    </div>
+    <div style="flex:1;padding:30px 28px 20px 24px;">
+      <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:24px;">
+        <div style="width:4px;min-width:4px;height:62px;background:${YLW};border-radius:2px;flex:0 0 4px;"></div>
+        <div><h1 style="margin:0;font-size:26px;font-weight:900;line-height:1.1;color:${TEXT};">${cv3033Text(d.name||'Full Name')}</h1><div style="font-size:10px;color:${MID};letter-spacing:1.5px;text-transform:uppercase;margin-top:5px;">${cv3033Text(d.title||'Job Title')}</div></div>
+      </div>
+      ${aboutHTML?`<div style="margin-bottom:18px;">${MSH('About Me')}${aboutHTML}</div>`:''}
+      ${eduHTML?`<div style="margin-bottom:18px;">${MSH('Education')}${eduHTML}</div>`:''}
+      ${expHTML?`<div style="margin-bottom:18px;">${MSH('Work Experience')}${expHTML}</div>`:''}
+      ${refHTML?`<div>${MSH('Reference')}${refHTML}</div>`:''}
+    </div>
+  </div>`;
+}
+
+function buildT45(d){
+  /* Layout: white main left (flex:1) | dark navy right sidebar 250px
+     Main: angled geometric navy+blue clip-path shapes at top (75px tall) → body content
+     Sidebar: rectangular photo → Name/Title block → Contact → Skills bars → Hobby icons
+     Main body: Summary → Experience (navy left-border timeline) → Education → Hobby */
+  const NAVY='#1B2E5E',BLUE='#2563eb',WHITE='#ffffff',TEXT='#1f2937',MID='#4b5563';
+  const photoRect=`<div style="width:100%;height:160px;background:#a8bbd4;${d.photoCSS}background-size:cover;background-position:center;"></div>`;
+  const MSH=label=>`<div style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;"><div style="width:4px;height:14px;background:${NAVY};border-radius:2px;flex:0 0 4px;"></div><div style="font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${NAVY};">${label}</div><div style="height:1px;flex:1;background:#dde4ee;"></div></div>`;
+  const SSH=label=>`<div style="font-size:7.5px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.9);margin:0 0 9px 0;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.2);">${label}</div>`;
+  const summaryHTML=d.summary?`<p style="margin:0;font-size:8.5px;color:${MID};line-height:1.7;">${cv3033Text(d.summary)}</p>`:'';
+  const expHTML=cv3033Arr(d.expItems).slice(0,4).map(e=>{
+    const period=cv3033Date(e);
+    const bullets=cv3033Lines(e.resp,2).concat(cv3033Lines(e.ach,1)).map(x=>`<div style="display:flex;gap:5px;margin-top:3px;"><span style="color:${NAVY};font-size:7px;margin-top:2px;">&#9679;</span><span style="font-size:7.8px;color:${MID};line-height:1.4;">${cv3033Text(x)}</span></div>`).join('');
+    return `<div style="margin:0 0 12px 0;padding-left:13px;border-left:2px solid ${NAVY};"><div style="display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;"><div style="font-size:9px;font-weight:800;color:${TEXT};">${cv3033Text(e.role||'Position')}</div>${period?`<div style="font-size:7.5px;color:${NAVY};font-weight:700;white-space:nowrap;">${cv3033Text(period)}</div>`:''}</div>${e.company?`<div style="font-size:8px;color:${MID};font-style:italic;">${cv3033Text(e.company)}</div>`:''}${bullets}</div>`;
+  }).join('');
+  const eduHTML=cv3033Arr(d.eduItems).slice(0,3).map(e=>{
+    const period=[e.from,e.to||(e.status==='In Progress'?'Present':'')].filter(Boolean).join(' - ');
+    return `<div style="margin:0 0 9px 0;padding-bottom:8px;border-bottom:1px solid #e8edf4;"><div style="font-size:8.8px;font-weight:800;color:${TEXT};">${cv3033Text(e.major||e.level||'Degree')}</div>${e.school?`<div style="font-size:8px;color:${NAVY};">${cv3033Text(e.school)}</div>`:''}${period?`<div style="font-size:7.5px;color:${MID};">${cv3033Text(period)}</div>`:''}</div>`;
+  }).join('');
+  const hobbyHTML=cv3033Arr(d.projItems).slice(0,5).map(p=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:8px;color:${MID};margin:0 8px 4px 0;"><span style="color:${NAVY};">&#9670;</span>${cv3033Text(p.name)}</span>`).join('');
+  const cRows=[];
+  if(d.phone)    cRows.push(['&#9742;',d.phone]);
+  if(d.email)    cRows.push(['&#9993;',d.email]);
+  if(d.city)     cRows.push(['&#9711;',d.city]);
+  if(d.linkedin) cRows.push(['&#8599;',d.linkedin]);
+  const sideContactHTML=cRows.map(r=>`<div style="display:flex;align-items:flex-start;gap:7px;margin:0 0 8px 0;"><span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:6.5px;flex:0 0 16px;">${r[0]}</span><span style="font-size:7.8px;color:rgba(255,255,255,.82);line-height:1.35;word-break:break-all;">${cv3033Text(r[1])}</span></div>`).join('');
+  const sideSkillsHTML=[...cv3033Arr(d.techSkillsArr),...cv3033Arr(d.softSkillsArr)].slice(0,6).map(s=>{const pct=Math.max(20,Math.min(100,Number(s.level||3)*20));return `<div style="margin:0 0 8px 0;"><div style="font-size:7.8px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:3px;">${cv3033Text(s.name)}</div><div style="height:4px;background:rgba(255,255,255,.2);border-radius:99px;"><div style="height:4px;width:${pct}%;background:#fff;border-radius:99px;"></div></div></div>`;}).join('');
+  const sideHobbyHTML=cv3033Arr(d.projItems).slice(0,4).map(p=>`<div style="display:flex;align-items:center;gap:6px;margin:0 0 6px 0;"><span style="width:20px;height:20px;border-radius:4px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:9px;flex:0 0 20px;">&#9670;</span><span style="font-size:8px;color:rgba(255,255,255,.82);">${cv3033Text(p.name)}</span></div>`).join('');
+  return `<div class="cv-sheet cvb" style="min-height:297mm;background:${WHITE};font-family:Inter,Arial,sans-serif;color:${TEXT};box-sizing:border-box;overflow:hidden;font-size:10px;display:flex;">
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
+      <div style="position:relative;height:75px;overflow:hidden;flex:0 0 75px;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:${NAVY};clip-path:polygon(0 0,100% 0,78% 100%,0 100%);"></div>
+        <div style="position:absolute;top:0;left:0;width:62%;height:100%;background:${BLUE};clip-path:polygon(0 0,100% 0,80% 100%,0 100%);opacity:.7;"></div>
+      </div>
+      <div style="flex:1;padding:18px 22px 20px 22px;">
+        ${summaryHTML?`<div style="margin-bottom:16px;">${MSH('Summary')}${summaryHTML}</div>`:''}
+        ${expHTML?`<div style="margin-bottom:16px;">${MSH('Experience')}${expHTML}</div>`:''}
+        ${eduHTML?`<div style="margin-bottom:16px;">${MSH('Education')}${eduHTML}</div>`:''}
+        ${hobbyHTML?`<div>${MSH('Hobby')}<div style="display:flex;flex-wrap:wrap;">${hobbyHTML}</div></div>`:''}
+      </div>
+    </div>
+    <div style="width:250px;min-width:250px;background:${NAVY};display:flex;flex-direction:column;">
+      ${photoRect}
+      <div style="padding:16px 16px 12px 16px;border-bottom:1px solid rgba(255,255,255,.15);">
+        <div style="font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.2;">${cv3033Text(d.name||'Full Name')}</div>
+        <div style="font-size:8px;color:rgba(255,255,255,.7);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">${cv3033Text(d.title||'Job Title')}</div>
+      </div>
+      <div style="padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.12);">${SSH('Contact')}${sideContactHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+      <div style="padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.12);">${SSH('Skill')}${sideSkillsHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+      <div style="padding:14px 16px;">${SSH('Hobby')}${sideHobbyHTML||`<div style="font-size:8px;color:rgba(255,255,255,.3);">&#8212;</div>`}</div>
+    </div>
+  </div>`;
+}
+
 /* ── TEMPLATE RENDERING ── */
+function formatTemplateCode(id){
+  const num=parseInt((id||'').replace(/\D/g,''),10);
+  return isNaN(num)?'':'#T'+String(num).padStart(3,'0');
+}
+
 function renderTemplates(){
   const grid=document.getElementById('tplGrid');
   if(!grid)return;
@@ -3769,7 +4012,7 @@ function renderTemplates(){
       +'<button class="tpl-zoom-btn choose" onclick="event.stopPropagation();selectTpl('+i+')">&#10003; Choose</button>'
       +'<button class="tpl-zoom-btn preview-btn" onclick="event.stopPropagation();openModal('+i+')">&#10022; Preview</button>'
       +'</div></div>'
-      +'<div class="tpl-info"><div class="tpl-name">'+t.n+'</div><div class="tpl-badge-row">'+badges+'</div><div class="tpl-desc">'+t.d+'</div></div>'
+      +'<div class="tpl-info"><div class="tpl-name">'+t.n+'</div><div class="tpl-code">'+formatTemplateCode(t.id)+'</div><div class="tpl-badge-row">'+badges+'</div><div class="tpl-desc">'+t.d+'</div></div>'
       +'</div>';
   }).join('');
 
@@ -3794,7 +4037,11 @@ const TEMPLATE_META = {
   t38:{style:'corporate',color:'dark',featured:true},
   t39:{style:'creative',color:'green'},
   t40:{style:'corporate',color:'dark'},
-  t41:{style:'minimal',color:'purple'}
+  t41:{style:'minimal',color:'purple'},
+  t42:{style:'corporate',color:'orange',featured:true},
+  t43:{style:'creative',color:'orange'},
+  t44:{style:'corporate',color:'dark',featured:true},
+  t45:{style:'corporate',color:'blue',featured:true}
 };
 
 let activeTemplateCategory='all';
@@ -3960,8 +4207,10 @@ function selectTpl(i){
   selectedTpl=i;
   document.querySelectorAll(".tpl-card").forEach((c,j)=>c.classList.toggle("selected",j===i));
   const tname=TEMPLATES[i]?.n||'Template';
-  const el=document.getElementById("por-tpl-val");if(el)el.textContent=tname;
-  const el2=document.getElementById("dl-tpl");if(el2)el2.textContent=tname;
+  const tcode=formatTemplateCode(TEMPLATES[i]?.id||'');
+  const tnameWithCode=tname+(tcode?' '+tcode:'');
+  const el=document.getElementById("por-tpl-val");if(el)el.textContent=tnameWithCode;
+  const el2=document.getElementById("dl-tpl");if(el2)el2.textContent=tnameWithCode;
 }
 
 /* ── MODAL ── */
@@ -3979,6 +4228,7 @@ function openModal(i){
   requestAnimationFrame(()=>{
     addPageBreakLines(document.getElementById("cvModalPage"));
     scaleA4PreviewForMobile();
+    setTimeout(scaleA4PreviewForMobile, 150);
   });
 }
 function scaleA4PreviewForMobile(){
@@ -3991,7 +4241,10 @@ function scaleA4PreviewForMobile(){
   if(!stage||!page)return;
 
   page.style.transform="";
+  page.style.transformOrigin="";
   page.style.marginBottom="";
+  stage.style.display="";
+  stage.style.overflow="";
   stage.style.width="";
   stage.style.height="";
   stage.style.marginLeft="";
@@ -4002,7 +4255,7 @@ function scaleA4PreviewForMobile(){
   const wrapStyle=window.getComputedStyle(wrap);
   const padLeft=parseFloat(wrapStyle.paddingLeft)||0;
   const padRight=parseFloat(wrapStyle.paddingRight)||0;
-  const availableWidth=Math.max(240,wrap.clientWidth-padLeft-padRight-2);
+  const availableWidth=Math.max(240,wrap.clientWidth-padLeft-padRight);
   const pageWidth=page.offsetWidth;
   const pageHeight=page.offsetHeight;
   if(!pageWidth||!pageHeight)return;
@@ -4011,8 +4264,14 @@ function scaleA4PreviewForMobile(){
   const scaledWidth=Math.ceil(pageWidth*scale);
   const scaledHeight=Math.ceil(pageHeight*scale);
 
+  /* transform-origin:top left keeps the page anchored at the stage's left edge
+     so the scaled visual exactly matches the stage clipping box */
+  page.style.transformOrigin="top left";
   page.style.transform="scale("+scale+")";
-  page.style.transformOrigin="top center";
+  /* switch to block so the page left-aligns naturally inside the stage */
+  stage.style.display="block";
+  /* overflow:hidden clips the un-transformed layout space to the scaled bounds */
+  stage.style.overflow="hidden";
   stage.style.width=scaledWidth+"px";
   stage.style.height=scaledHeight+"px";
   stage.style.marginLeft="auto";
@@ -5288,4 +5547,9 @@ window.addEventListener('beforeunload',function(e){
 <div style="flex: 1; min-width: 250px;">
 <h3 style="color: #ffffff; font-size: 16px; margin-bottom: 10px; font-weight: 600;">Support</h3>
 <p style="margin-bottom: 8px;">Email: <a href="mailto:support@mycvkh.com" style="color: #60a5fa; text-decoration: none;">support@mycvkh.com</a></p>
-<p>Telegram: <a href="https://t.me/yourtelegram" style="color: #60a5fa; text-decoration: n
+<p>Telegram: <a href="https://t.me/yourtelegram" style="color: #60a5fa; text-decoration: none;" target="_blank">@MyCVKH_Support</a></p>
+</div>
+</div>
+</footer>
+</body>
+</html>
