@@ -216,6 +216,10 @@
       border-color:#2196D3;box-shadow:0 0 0 4px #2196D318;background:#fff;
     }
     .hint{font-size:12px;color:var(--muted);margin-top:-2px}
+    .field-err{display:none;color:#dc2626;font-size:11.5px;font-weight:600;margin-top:-3px}
+    .field-err.show{display:block}
+    input.input-err{border-color:#dc2626!important;background:#fff5f5!important}
+    input.input-err:focus{border-color:#dc2626!important;box-shadow:0 0 0 4px rgba(220,38,38,.15)!important}
 
     /* ── SUB-ITEM CARDS ── */
     .sub-item{
@@ -1324,8 +1328,8 @@
 </div>
 <div class="acc-body">
 <div class="form-grid">
-<div class="field"><label>ឈ្មោះពេញ</label><input id="in-name" placeholder="e.g. Sok Dara" type="text"/></div>
-<div class="field"><label>មុខតំណែងបច្ចុប្បន្ន</label><input id="in-job-title" placeholder="e.g. Marketing Executive" type="text"/></div>
+<div class="field"><label>ឈ្មោះពេញ</label><input id="in-name" placeholder="e.g. Sok Dara" type="text"/><span class="field-err" id="err-name">Full name is required.</span></div>
+<div class="field"><label>មុខតំណែងបច្ចុប្បន្ន</label><input id="in-job-title" placeholder="e.g. Marketing Executive" type="text"/><span class="field-err" id="err-job-title">Current position is required.</span></div>
 <div class="field full"><label>ដាក់ពាក្យសម្រាប់ (មិនបាច់បំពេញក៏បាន)</label><input id="in-apply-for" placeholder="e.g. Head of Marketing" type="text"/></div>
 <div class="field full"><label>គោលបំណងអាជីព</label><textarea id="in-objective" placeholder="e.g. Results-driven Marketing Executive with experience in digital marketing, customer communication, and campaign coordination."></textarea></div>
 </div>
@@ -2012,7 +2016,10 @@ function updateStickyNav(){
   }
 }
 function stickyBack(){if(currentScreen===2)goTo(1);else if(currentScreen===3)goTo(2);}
-function stickyNext(){if(currentScreen==1)goTo(2);else if(currentScreen==2){handleCheckout();}}
+function stickyNext(){
+  console.log('stickyNext currentScreen =', currentScreen);
+  if(currentScreen==1)goTo(2);else if(currentScreen==2){handleCheckout();}
+}
 
 /* ── TEMPLATES ── */
 const TEMPLATES = [
@@ -4804,26 +4811,58 @@ const BACKEND_URL = 'https://mycvkh-backend.onrender.com'; // ALREADY UPDATED TO
 let paymentInterval;
 let currentTransactionId = null;
 
-async function handleCheckout() {
-  const d = buildData();
+// ── CHECKOUT FIELD VALIDATION HELPERS ──
+function setFieldErr(inputId, errId, on) {
+  const inp = document.getElementById(inputId);
+  const msg = document.getElementById(errId);
+  if (inp) inp.classList.toggle('input-err', on);
+  if (msg) msg.classList.toggle('show', on);
+}
+function clearCheckoutErrors() {
+  setFieldErr('in-name',      'err-name',      false);
+  setFieldErr('in-job-title', 'err-job-title', false);
+}
 
-  if(!d.name || !d.title) {
-    alert("Please fill in your name and job title before downloading.");
-    return;
+async function handleCheckout() {
+  console.log('handleCheckout fired');
+
+  // ── 1. Validate required fields (raw input, not buildData fallbacks) ──
+  clearCheckoutErrors();
+  const nameVal  = (document.getElementById('in-name')?.value      || '').trim();
+  const titleVal = (document.getElementById('in-job-title')?.value  || '').trim();
+  console.log('nameVal =', nameVal, '| titleVal =', titleVal);
+
+  let hasError = false;
+  if (!nameVal)  { setFieldErr('in-name',      'err-name',      true); hasError = true; }
+  if (!titleVal) { setFieldErr('in-job-title', 'err-job-title', true); hasError = true; }
+  console.log('hasError =', hasError);
+
+  if (hasError) {
+    console.log('validation failed — going to Step 1');
+    goTo(1);
+    const firstErrInput = document.querySelector('input.input-err');
+    if (firstErrInput) {
+      firstErrInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrInput.focus();
+    }
+    return;                            // ← no API call, no goTo(3)
   }
 
+  // ── 2. Validation passed — navigate to payment screen ──
+  console.log('about to goTo(3)');
   goTo(3);
+  console.log('after goTo(3), currentScreen =', currentScreen);
 
-  // Show UI Modal
-  document.getElementById('payment-loader-ui').style.display = 'block';
-
-  // Reset QR UI to loading state
+  // ── 3. Reset QR UI to loading state ──
   const qrImg = document.getElementById('qrImage');
   const qrPlaceholder = document.getElementById('qrPlaceholder');
-  if(qrImg) { qrImg.src = ''; qrImg.style.display = 'none'; }
-  if(qrPlaceholder) qrPlaceholder.style.display = 'flex';
+  if (qrImg) { qrImg.src = ''; qrImg.style.display = 'none'; }
+  if (qrPlaceholder) { qrPlaceholder.style.display = 'flex'; qrPlaceholder.textContent = 'Generating QR...'; }
   const qrRef = document.getElementById('qr-ref');
-  if(qrRef) qrRef.textContent = 'Ref: Pending...';
+  if (qrRef) qrRef.textContent = 'Ref: Pending...';
+
+  // ── 4. Show payment loader ──
+  document.getElementById('payment-loader-ui').style.display = 'block';
 
   const templateName = TEMPLATES[selectedTpl] ? TEMPLATES[selectedTpl].n : 'Unknown';
   const language = lang || 'en';
@@ -4832,25 +4871,25 @@ async function handleCheckout() {
     const response = await fetch(`${BACKEND_URL}/api/checkout`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: 1.00, customerName: d.name, templateName: templateName, language: language })
+      body: JSON.stringify({ amount: 1.00, customerName: nameVal, templateName, language })
     });
     const data = await response.json();
 
     if (data.success) {
       currentTransactionId = data.transactionId;
-      if(qrPlaceholder) qrPlaceholder.style.display = 'none';
-      if(qrImg) { qrImg.src = data.qrUrl; qrImg.style.display = 'block'; }
-      if(qrRef) qrRef.textContent = currentTransactionId;
+      if (qrPlaceholder) qrPlaceholder.style.display = 'none';
+      if (qrImg) { qrImg.src = data.qrUrl; qrImg.style.display = 'block'; }
+      if (qrRef) qrRef.textContent = currentTransactionId;
       startPolling();
     } else {
-      if(qrPlaceholder) qrPlaceholder.textContent = 'Failed to generate QR. Please go back and try again.';
-      alert("Payment initialization failed.");
+      if (qrPlaceholder) qrPlaceholder.textContent = 'Failed to generate QR. Please go back and try again.';
+      alert('Payment initialization failed.');
       closePaymentModal();
     }
   } catch (error) {
-    console.error("Checkout error:", error);
-    if(qrPlaceholder) qrPlaceholder.textContent = 'Connection failed. Please go back and try again.';
-    alert("Server connection failed.");
+    console.error('Checkout error:', error);
+    if (qrPlaceholder) qrPlaceholder.textContent = 'Connection failed. Please go back and try again.';
+    alert('Server connection failed.');
     closePaymentModal();
   }
 }
@@ -5340,6 +5379,12 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // 3. Apply action button logic to all hardcoded first items
   [['eduList','edu-item'],['expList','exp-item'],['certList','cert-item'],['refList','ref-item']].forEach(([lid,cls])=>refreshListActions(lid,cls));
+
+  // 4. Live-clear checkout validation errors as user types
+  [['in-name','err-name'],['in-job-title','err-job-title']].forEach(function([id,eid]){
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', function(){ if (el.value.trim()) setFieldErr(id, eid, false); });
+  });
 });
 document.addEventListener('input',function(){
   saveToStorage();
