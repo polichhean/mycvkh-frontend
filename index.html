@@ -1176,6 +1176,12 @@
       .tpl-filter-btn,.cfbtn-all,.cfbtn{flex:0 0 auto}
     }
 
+    /* ── SVG ICON UTILITIES ── */
+    .btn{display:inline-flex;align-items:center;gap:7px}
+    .btn svg,.acc-badge svg,.why-icon svg,.modal-close svg,
+    .mobile-leave-icon svg,.tpl-search-icon svg,.payment-trust-badge .lock svg{display:block;flex-shrink:0}
+    .photo-upload .upload-icon{font-size:0;margin-bottom:8px}  /* remove font fallback */
+
     /* ══ DARK MODE ══════════════════════════════════════════════════════════ */
 
     /* Smooth transitions for all UI elements when theme switches */
@@ -1450,7 +1456,7 @@
 <body>
 <div aria-hidden="true" class="mobile-leave-warning" id="mobileLeaveWarning">
 <div class="mobile-leave-card">
-<div class="mobile-leave-icon">⚠️</div>
+<div class="mobile-leave-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
 <h3>Leave this page?</h3>
 <p>Your CV progress may not be saved if you leave now. You can stay and continue editing.</p>
 <div class="mobile-leave-actions">
@@ -1466,7 +1472,7 @@
 <span class="topbar-tagline" id="brand-sub">Design Your CV · Pay just $1 · Download Instantly</span>
 </a>
 <div class="topbar-spacer"></div>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Dark / Light mode">🌙</button>
+<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Dark / Light mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
 <div class="lang-toggle">
 <button class="lang-btn" onclick="setLang('en')">EN</button>
       <button class="lang-btn active" onclick="setLang('km')">KH</button>
@@ -1504,22 +1510,22 @@
 <div class="landing-card landing-section" id="why-choose">
 <div class="landing-section-head"><h2 data-en="Why choose MyCVKH?" data-kh="ហេតុអ្វីគួរជ្រើសរើស MyCVKH?">Why choose MyCVKH?</h2><p data-en="Designed for Cambodian job seekers who want a clean, professional CV without design skills." data-kh="បង្កើតសម្រាប់អ្នករកការងារនៅកម្ពុជា ដែលចង់បាន CV ស្អាត និង Professional ដោយមិនចាំបាច់ចេះ Design។">Designed for Cambodian job seekers who want a clean, professional CV without design skills.</p></div>
 <div class="why-grid">
-<div class="why-card"><div class="why-icon">✨</div><div><h3 data-en="Professional templates" data-kh="Template មើលទៅ Professional">Professional templates</h3><p data-en="Modern layouts for students, office workers and young professionals." data-kh="Layout ទំនើបសម្រាប់និស្សិត អ្នកធ្វើការការិយាល័យ និងអ្នកជំនាញវ័យក្មេង។">Modern layouts for students, office workers and young professionals.</p></div></div>
-<div class="why-card"><div class="why-icon">📱</div><div><h3 data-en="Mobile friendly" data-kh="ងាយស្រួលប្រើលើទូរស័ព្ទ">Mobile friendly</h3><p data-en="Create and preview your CV directly on your smartphone." data-kh="បង្កើត និងមើល Preview CV បានផ្ទាល់លើទូរស័ព្ទ។">Create and preview your CV directly on your smartphone.</p></div></div>
-<div class="why-card"><div class="why-icon">💵</div><div><h3 data-en="Affordable price" data-kh="តម្លៃសមរម្យ">Affordable price</h3><p data-en="Only $1 to continue and download your final CV. KHQR payment is processed as 4,000 KHR." data-kh="ត្រឹមតែ $1 ដើម្បីបន្ត និងទាញយក CV ចុងក្រោយ។ ការទូទាត់ KHQR ត្រូវបានដំណើរការជា 4,000 KHR។">Only $1 to continue and download your final CV. KHQR payment is processed as 4,000 KHR.</p></div></div>
-<div class="why-card"><div class="why-icon">👀</div><div><h3 data-en="Preview before download" data-kh="មើល Preview មុនទាញយក">Preview before download</h3><p data-en="Check your design and content before the final step." data-kh="ពិនិត្យ Design និងអត្ថបទរបស់អ្នក មុនទៅជំហានចុងក្រោយ។">Check your design and content before the final step.</p></div></div>
-<div class="why-card"><div class="why-icon">⚡</div><div><h3 data-en="Fast and simple" data-kh="លឿន និងងាយស្រួល">Fast and simple</h3><p data-en="No complicated software. Just fill, choose, preview and download." data-kh="មិនចាំបាច់ប្រើ Software ស្មុគស្មាញ។ គ្រាន់តែបំពេញ ជ្រើស មើល Preview និងទាញយក។">No complicated software. Just fill, choose, preview and download.</p></div></div>
-<div class="why-card"><div class="why-icon">🇰🇭</div><div><h3 data-en="Made for Cambodia" data-kh="សម្រាប់ទីផ្សារកម្ពុជា">Made for Cambodia</h3><p data-en="Built with Khmer users, local payment habits and job seekers in mind." data-kh="បង្កើតដោយគិតពីអ្នកប្រើប្រាស់ខ្មែរ ទម្លាប់បង់ប្រាក់ក្នុងស្រុក និងអ្នករកការងារ។">Built with Khmer users, local payment habits and job seekers in mind.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><h3 data-en="Professional templates" data-kh="Template មើលទៅ Professional">Professional templates</h3><p data-en="Modern layouts for students, office workers and young professionals." data-kh="Layout ទំនើបសម្រាប់និស្សិត អ្នកធ្វើការការិយាល័យ និងអ្នកជំនាញវ័យក្មេង។">Modern layouts for students, office workers and young professionals.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div><h3 data-en="Mobile friendly" data-kh="ងាយស្រួលប្រើលើទូរស័ព្ទ">Mobile friendly</h3><p data-en="Create and preview your CV directly on your smartphone." data-kh="បង្កើត និងមើល Preview CV បានផ្ទាល់លើទូរស័ព្ទ។">Create and preview your CV directly on your smartphone.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><h3 data-en="Affordable price" data-kh="តម្លៃសមរម្យ">Affordable price</h3><p data-en="Only $1 to continue and download your final CV. KHQR payment is processed as 4,000 KHR." data-kh="ត្រឹមតែ $1 ដើម្បីបន្ត និងទាញយក CV ចុងក្រោយ។ ការទូទាត់ KHQR ត្រូវបានដំណើរការជា 4,000 KHR។">Only $1 to continue and download your final CV. KHQR payment is processed as 4,000 KHR.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h3 data-en="Preview before download" data-kh="មើល Preview មុនទាញយក">Preview before download</h3><p data-en="Check your design and content before the final step." data-kh="ពិនិត្យ Design និងអត្ថបទរបស់អ្នក មុនទៅជំហានចុងក្រោយ។">Check your design and content before the final step.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><h3 data-en="Fast and simple" data-kh="លឿន និងងាយស្រួល">Fast and simple</h3><p data-en="No complicated software. Just fill, choose, preview and download." data-kh="មិនចាំបាច់ប្រើ Software ស្មុគស្មាញ។ គ្រាន់តែបំពេញ ជ្រើស មើល Preview និងទាញយក។">No complicated software. Just fill, choose, preview and download.</p></div></div>
+<div class="why-card"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h3 data-en="Made for Cambodia" data-kh="សម្រាប់ទីផ្សារកម្ពុជា">Made for Cambodia</h3><p data-en="Built with Khmer users, local payment habits and job seekers in mind." data-kh="បង្កើតដោយគិតពីអ្នកប្រើប្រាស់ខ្មែរ ទម្លាប់បង់ប្រាក់ក្នុងស្រុក និងអ្នករកការងារ។">Built with Khmer users, local payment habits and job seekers in mind.</p></div></div>
 </div>
 </div>
 <div class="landing-card landing-section" id="target-audience">
 <div class="landing-section-head"><h2 data-en="Who is MyCVKH for?" data-kh="តើ MyCVKH សាកសមសម្រាប់អ្នកណា?">Who is MyCVKH for?</h2><p data-en="A simple CV tool for people preparing to apply for jobs, internships or career opportunities." data-kh="ឧបករណ៍បង្កើត CV ងាយស្រួលសម្រាប់អ្នកត្រៀមដាក់ពាក្យការងារ Internship ឬឱកាសអាជីពផ្សេងៗ។">A simple CV tool for people preparing to apply for jobs, internships or career opportunities.</p></div>
 <div class="audience-grid">
-<div class="audience-card"><div class="emoji">🎓</div><h3 data-en="Students" data-kh="និស្សិត">Students</h3></div>
-<div class="audience-card"><div class="emoji">🌱</div><h3 data-en="Fresh graduates" data-kh="អ្នកទើបបញ្ចប់ការសិក្សា">Fresh graduates</h3></div>
-<div class="audience-card"><div class="emoji">💼</div><h3 data-en="Office workers" data-kh="អ្នកធ្វើការការិយាល័យ">Office workers</h3></div>
-<div class="audience-card"><div class="emoji">🔎</div><h3 data-en="Job seekers" data-kh="អ្នកកំពុងរកការងារ">Job seekers</h3></div>
-<div class="audience-card"><div class="emoji">🚀</div><h3 data-en="Career changers" data-kh="អ្នកចង់ផ្លាស់ប្តូរការងារ">Career changers</h3></div>
+<div class="audience-card"><div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><h3 data-en="Students" data-kh="និស្សិត">Students</h3></div>
+<div class="audience-card"><div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 17 4 22 4c0 5-3 8-10 8z"/><path d="M12 12C12 7 7 4 2 4c0 5 3 8 10 8z"/></svg></div><h3 data-en="Fresh graduates" data-kh="អ្នកទើបបញ្ចប់ការសិក្សា">Fresh graduates</h3></div>
+<div class="audience-card"><div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><h3 data-en="Office workers" data-kh="អ្នកធ្វើការការិយាល័យ">Office workers</h3></div>
+<div class="audience-card"><div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3 data-en="Job seekers" data-kh="អ្នកកំពុងរកការងារ">Job seekers</h3></div>
+<div class="audience-card"><div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div><h3 data-en="Career changers" data-kh="អ្នកចង់ផ្លាស់ប្តូរការងារ">Career changers</h3></div>
 </div>
 </div>
 <div class="landing-card price-card" id="price-section">
@@ -1583,7 +1589,7 @@
 <!-- ══ SCREEN 1: INFORMATION ══ -->
 <div class="screen active" id="screen-1">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<button onclick="fillSampleData()" style="background:#1B2E5E;color:#fff;border:none;border-radius:10px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px" type="button">✨ Fill with Sample Data</button>
+<button onclick="fillSampleData()" style="background:#1B2E5E;color:#fff;border:none;border-radius:10px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Fill with Sample Data</button>
 <button onclick="clearStoredData()" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer;text-decoration:underline;padding:4px 0" type="button">Clear Saved Data</button>
 </div>
 <!-- Step 1: Personal Profile & Objective -->
@@ -1921,7 +1927,7 @@
 <!-- Section 12: Profile Photo -->
 <div class="acc-card" id="acc-12">
 <div class="acc-header" onclick="toggleAcc('acc-12')">
-<div class="acc-badge">📷</div>
+<div class="acc-badge"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
 <div class="acc-title-wrap">
 <div class="acc-title">Profile Photo</div>
 <div class="acc-sub">Upload a passport-size professional photo</div>
@@ -1930,7 +1936,7 @@
 </div>
 <div class="acc-body">
 <div class="photo-upload" id="photo-upload-area" onclick="photoAreaClick()">
-<div class="icon">📷</div>
+<div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
 <p id="photo-lbl-main"><strong>Click to upload</strong> your photo</p>
 <p id="photo-lbl-sub" style="font-size:13px;color:var(--muted);margin-top:4px">PNG, JPG up to 5MB · Passport size recommended</p>
 </div>
@@ -1949,7 +1955,7 @@
 <div class="tpl-filter-panel" id="tplFilterPanel">
   <div class="tpl-filter-top">
     <div class="tpl-search-wrap">
-      <span class="tpl-search-icon">🔎</span>
+      <span class="tpl-search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input type="search" id="tplSearchInput" class="tpl-search-input" autocomplete="off" placeholder="Search by name, style, color..."/>
     </div>
     <button type="button" class="tpl-reset-btn" id="tplResetFiltersBtn">Reset Filters</button>
@@ -2000,11 +2006,11 @@
 <div class="pay-title">KHQR (Universal)</div>
 <div class="pay-sub" id="pay-aba-sub">Scan with ABA, ACLEDA, Canadia, Wing and any Cambodian banking app</div>
 </div>
-<div style="font-size:28px">📲</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><path d="M21 14h-4v4M21 18v3M17 21h4"/></svg></div>
 </div>
 </div>
-<div style="background:#f0faf4;border:1px solid #c4e8cf;border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;color:#16a34a;font-weight:600">
-        ✅ KHQR works with all major Cambodian bank apps.
+<div style="background:#f0faf4;border:1px solid #c4e8cf;border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;color:#16a34a;font-weight:600;display:flex;align-items:center;gap:8px">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg> KHQR works with all major Cambodian bank apps.
       </div>
 <div class="pay-order">
 <div class="pay-order-row"><span id="por-template">Template</span><strong id="por-tpl-val">Modern Blue</strong></div>
@@ -2027,7 +2033,7 @@
 <div id="qr-ref" style="font-size:12px;color:var(--muted);margin-top:8px">Ref: Pending...</div>
 
 <div class="qr-mobile-helper">Save this QR code to your gallery and upload it in your banking app.</div>
-<div class="payment-trust-badge"><span class="lock">🔒</span><span>100% Secure Payment - Secured by KHQR</span></div>
+<div class="payment-trust-badge"><span class="lock"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>100% Secure Payment - Secured by KHQR</span></div>
 <div id="payment-loader-ui" style="display: none; margin-top: 20px; width: 100%;">
 <div style="background-color: #0B1E3D; color: white; padding: 16px; display: flex; align-items: center; font-family: sans-serif; font-size: 15px; font-weight: bold;">
 <div style="width: 10px; height: 10px; background-color: #4CAF50; margin-right: 15px; animation: paymentBlink 1s infinite;"></div>
@@ -2054,7 +2060,7 @@
 <div class="screen" id="screen-4">
 <div class="section-card">
 <div class="download-wrap">
-<div class="success-ring">✅</div>
+<div class="success-ring"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
 <h2 id="dl-title">Payment Confirmed!</h2>
 <p id="dl-sub">Your CV is ready — <strong id="dl-name-inline"></strong>, best of luck! 🎉<br/>Download below and start applying today.</p>
 <div style="background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:22px;text-align:left;max-width:380px;margin-left:auto;margin-right:auto">
@@ -2069,9 +2075,12 @@
 </div>
 </div>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<button class="btn success lg" id="dl-btn" onclick="downloadCV()">⬇ Download CV (PDF)</button>
+<button class="btn success lg" id="dl-btn" onclick="downloadCV()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span id="dl-btn-txt">Download CV (PDF)</span></button>
 <button class="btn light lg" id="dl-new" onclick="goTo(1)">+ Create Another CV</button>
-<button class="btn ghost lg" id="dl-home" onclick="goTo(1)">🏠 Back to Home</button>
+<button class="btn ghost lg" id="dl-home" onclick="goTo(1)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span id="dl-home-txt">Back to Home</span></button>
+</div>
+<div style="margin-top:14px;text-align:center">
+<button onclick="downloadReceipt()" style="background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:4px 8px;border-radius:6px;transition:.15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Download payment receipt</button>
 </div>
 </div>
 </div>
@@ -2080,7 +2089,7 @@
 <!-- ── TEMPLATE PREVIEW MODAL ── -->
 <div class="modal-backdrop" id="modal">
 <div class="modal-box">
-<button class="modal-close" onclick="closeModal()">✕</button>
+<button class="modal-close" onclick="closeModal()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
 <div class="modal-title" id="modal-title">Template Preview</div>
 <div class="modal-sub" id="modal-sub">This is how your CV will look</div>
 <div class="modal-cv-wrap" id="modal-cv-wrap"></div>
@@ -2123,7 +2132,7 @@ const T = {
     porTemplate:"Template",porLang:"Language",porTotal:"Total",qrTitle:"Scan to Pay",qrSub:"Scan with your banking app",
     s3Helper:"Having trouble? Contact us on Telegram @mycvkh",
     dlTitle:"Payment Confirmed!",dlNameLbl:"Applicant",dlTplLbl:"Template",dlLangLbl:"Language",
-    dlBtn:"⬇ Download CV (PDF)",dlNew:"+ Create Another CV",dlHome:"🏠 Back to Home",
+    dlBtn:"Download CV (PDF)",dlNew:"+ Create Another CV",dlHome:"Back to Home",
     modalCancel:"Cancel",modalSelect:"Select This Template →",
     pill1:"Information",pill2:"Template",pill3:"Payment",pill4:"Download"
   },
@@ -2137,7 +2146,7 @@ const T = {
     porTemplate:"Template",porLang:"ភាសា",porTotal:"សរុប",qrTitle:"Scan ដើម្បីបង់",qrSub:"Scan តាមកម្មវិធីធនាគារ",
     s3Helper:"មានបញ្ហា? ទំនាក់ទំនង Telegram @mycvkh",
     dlTitle:"ការទូទាត់បានបញ្ជាក់!",dlNameLbl:"ឈ្មោះ",dlTplLbl:"Template",dlLangLbl:"ភាសា",
-    dlBtn:"⬇ ទាញ CV (PDF)",dlNew:"+ បង្កើត CV ថ្មី",dlHome:"🏠 ត្រឡប់ទំព័រដើម",
+    dlBtn:"ទាញ CV (PDF)",dlNew:"+ បង្កើត CV ថ្មី",dlHome:"ត្រឡប់ទំព័រដើម",
     modalCancel:"បោះបង់",modalSelect:"ជ្រើស Template នេះ →",
     pill1:"ព័ត៌មាន",pill2:"Template",pill3:"ការទូទាត់",pill4:"ទាញយក"
   }
@@ -2165,7 +2174,7 @@ function applyLang(){
   set("qr-title",t.qrTitle);set("qr-sub",t.qrSub);
   set("s3-helper",t.s3Helper);
   set("dl-title",t.dlTitle);set("dl-name-lbl",t.dlNameLbl);set("dl-tpl-lbl",t.dlTplLbl);set("dl-lang-lbl",t.dlLangLbl);
-  set("dl-btn",t.dlBtn);set("dl-new",t.dlNew);set("dl-home",t.dlHome);
+  set("dl-btn-txt",t.dlBtn);set("dl-new",t.dlNew);set("dl-home-txt",t.dlHome);
   set("modal-cancel",t.modalCancel);set("modal-select",t.modalSelect);
   set("pill1-label",t.pill1);set("pill2-label",t.pill2);set("pill3-label",t.pill3);set("pill4-label",t.pill4);
   if(typeof updateTemplateFilterLanguage==='function')updateTemplateFilterLanguage();
@@ -2297,17 +2306,17 @@ function stickyNext(){
 
 /* ── TEMPLATES ── */
 const TEMPLATES = [
-    {n:'Bold Dark',      id:'t1', badges:['⭐ Most Popular','Best for Corporate'],   d:'Dark sidebar with photo, gold accents. Professional and bold for designers and corporate roles.'},
-    {n:'Teal Classic',   id:'t2', badges:['🌿 Fresh & Clean','Best for Any Role'],   d:'Two-column teal sidebar with clean typography. Hobbies and language section included.'},
-    {n:'Charcoal Flip',  id:'t3', badges:['🖤 Modern','Best for Tech & Creatives'],  d:'Right-side dark panel, left-side content. Sleek and contemporary layout.'},
-    {n:'Laura Minimal',  id:'t4', badges:['⬜ Ultra Minimal','Best for Designers'],   d:'Clean white layout with black bar, large photo, two-column content area.'},
-    {n:'Anne Yellow',    id:'t5', badges:['🟡 Bold & Fresh','Best for Web & Media'],  d:'Left sidebar with circular photo, yellow accent lines, star-rating skills section.'},
-    {n:'Kelly Orange',   id:'t6', badges:['🟠 Bold Orange','Best for Sales & Business'], d:'Dark navy sidebar with orange accents, circular photo and skill bars. Vibrant and professional.'},
-    {n:'Mathew Dark',    id:'t7', badges:['🖤 Premium Dark','Best for Creatives'],        d:'All-dark premium layout with portrait photo, star-rated expertise and references section.'},
-    {n:'Clean Minimal',  id:'t8', badges:['⬜ Ultra Clean','Best for Any Role'],           d:'Super-clean white two-column layout with centered header. Perfect minimalist professional design.'},
-    {n:'Ayden Pink',     id:'t9', badges:['🌸 Rose Accent','Best for Fashion & PR'],       d:'Rose-accented layout with large portrait photo on header. Elegant and eye-catching.'},
-    {n:'Noel Charcoal',  id:'t10',badges:['⬛ Bold Name','Best for Senior Professionals'], d:'Large bold stacked name header, dark right column, dual-layout with skills bars and contact.'},
-    {n:'Laura Dark',     id:'t11',badges:['🌑 Dark Sidebar','Best for Tech & Creative'],   d:'Clean white left panel with right dark sidebar, circular photo and star-rated skills.'},
+    {n:'Bold Dark',      id:'t1', badges:['Most Popular','Best for Corporate'],   d:'Dark sidebar with photo, gold accents. Professional and bold for designers and corporate roles.'},
+    {n:'Teal Classic',   id:'t2', badges:['Fresh & Clean','Best for Any Role'],   d:'Two-column teal sidebar with clean typography. Hobbies and language section included.'},
+    {n:'Charcoal Flip',  id:'t3', badges:['Modern','Best for Tech & Creatives'],  d:'Right-side dark panel, left-side content. Sleek and contemporary layout.'},
+    {n:'Laura Minimal',  id:'t4', badges:['Ultra Minimal','Best for Designers'],   d:'Clean white layout with black bar, large photo, two-column content area.'},
+    {n:'Anne Yellow',    id:'t5', badges:['Bold & Fresh','Best for Web & Media'],  d:'Left sidebar with circular photo, yellow accent lines, star-rating skills section.'},
+    {n:'Kelly Orange',   id:'t6', badges:['Bold Orange','Best for Sales & Business'], d:'Dark navy sidebar with orange accents, circular photo and skill bars. Vibrant and professional.'},
+    {n:'Mathew Dark',    id:'t7', badges:['Premium Dark','Best for Creatives'],        d:'All-dark premium layout with portrait photo, star-rated expertise and references section.'},
+    {n:'Clean Minimal',  id:'t8', badges:['Ultra Clean','Best for Any Role'],           d:'Super-clean white two-column layout with centered header. Perfect minimalist professional design.'},
+    {n:'Ayden Pink',     id:'t9', badges:['Rose Accent','Best for Fashion & PR'],       d:'Rose-accented layout with large portrait photo on header. Elegant and eye-catching.'},
+    {n:'Noel Charcoal',  id:'t10',badges:['Bold Name','Best for Senior Professionals'], d:'Large bold stacked name header, dark right column, dual-layout with skills bars and contact.'},
+    {n:'Laura Dark',     id:'t11',badges:['Dark Sidebar','Best for Tech & Creative'],   d:'Clean white left panel with right dark sidebar, circular photo and star-rated skills.'},
     {n:'Olivia Grey',    id:'t12',badges:['New','Editorial'],              d:'Grey sidebar with dark name band, circular photo and clean corporate sections.'},
     {n:'Malkin Soft',    id:'t13',badges:['New','Soft Cards'],             d:'Warm card-based layout with portrait block, rounded panels and skill dots.'},
     {n:'Purple Timeline',id:'t14',badges:['New','Timeline'],               d:'Purple header design with left profile column and structured timeline sections.'},
@@ -4892,7 +4901,7 @@ function addLanguageEntry(){
           ${lvlHtml}
         </select>
       </div>
-      <button type="button" onclick="removeLangEntry(this)" style="margin-top:22px;background:#fee2e2;color:#dc2626;border:none;border-radius:10px;padding:9px 12px;font-weight:700;cursor:pointer;white-space:nowrap">✕ Remove</button>
+      <button type="button" onclick="removeLangEntry(this)" style="margin-top:22px;background:#fee2e2;color:#dc2626;border:none;border-radius:10px;padding:9px 12px;font-weight:700;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Remove</button>
     </div>
     <div style="margin-top:12px">
       <label style="font-size:12px;font-weight:700;color:var(--text);display:block;margin-bottom:8px">Proficiency <span style="font-weight:400;color:var(--muted)">(Optional)</span></label>
@@ -5254,13 +5263,90 @@ function downloadCV() {
     alert('Download not ready. If you have already paid, please contact us on Telegram @mycvkh.');
     return;
   }
+
+  /* ── Ensure printArea has CV content ── */
+  const pa = document.getElementById('printArea');
+  const t  = TEMPLATES[selectedTpl];
+  if (pa && t && !pa.innerHTML.trim()) {
+    pa.innerHTML = buildFullHTML(t);
+    injectPhotos(pa);
+  }
+  if (!pa || !pa.innerHTML.trim()) {
+    alert('CV content could not be generated. Please go back to step 2 and make sure a template is selected.');
+    return;
+  }
+
+  /* ── Open blank print window ── */
+  const pw = window.open('', '_blank', 'width=900,height=1200');
+  if (!pw) {
+    alert('Popup blocked. Please allow popups for this site and try again.');
+    return;
+  }
+
+  /* ── Collect all CSS from current page ── */
+  let allCSS = '';
+  document.querySelectorAll('style').forEach(function(s){ allCSS += s.textContent; });
+
+  /* ── Collect Google Fonts link tags ── */
+  const fontLinks = Array.from(
+    document.querySelectorAll('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')
+  ).map(function(l){ return l.outerHTML; }).join('\n');
+
+  /* ── Write full CV document into the new window ── */
+  pw.document.write(
+    '<!DOCTYPE html>' +
+    '<html><head>' +
+    '<meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<title>MyCVKH — CV</title>' +
+    fontLinks +
+    '<style>' + allCSS + '</style>' +
+    '<style>' +
+    /* Show print-area normally in the new window (it is display:none on the main page) */
+    'html,body{margin:0;padding:0;background:#fff!important}' +
+    '.print-area{display:block!important;width:210mm;margin:0 auto}' +
+    /* Always render CV colours accurately */
+    '*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}' +
+    /* CV preview must look like paper even if dark-mode CSS loaded */
+    '[data-theme="dark"] .a4-page,[data-theme="dark"] .cv-sheet,[data-theme="dark"] .cv-new{background:#fff!important;color:initial!important}' +
+    '</style>' +
+    '</head>' +
+    '<body>' +
+    '<div class="print-area">' + pa.innerHTML + '</div>' +
+    '</body></html>'
+  );
+  pw.document.close();
+
+  /* ── Trigger print after fonts & images have had time to load ── */
+  var printed = false;
+  function doPrint(){
+    if(printed) return;
+    printed = true;
+    pw.focus();
+    pw.print();
+  }
+  pw.onload = function(){ setTimeout(doPrint, 600); };
+  /* Fallback: if onload fired before we attached the handler */
+  setTimeout(doPrint, 1400);
+}
+
+/* ── Receipt download (payment confirmation only — not the CV) ── */
+function downloadReceipt() {
+  const txId  = window.downloadTxId;
+  const token = window.downloadToken;
+  if (!txId || !token) {
+    alert('Receipt not available. Please contact us on Telegram @mycvkh.');
+    return;
+  }
   window.open(`${BACKEND_URL}/api/receipt/${txId}?token=${token}`, '_blank');
 }
 /* ── DARK MODE TOGGLE ── */
 function _applyDarkMode(dark){
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   var btn = document.getElementById('theme-toggle');
-  if(btn) btn.textContent = dark ? '☀️' : '🌙';
+  if(btn) btn.innerHTML = dark
+    ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 }
 function toggleDarkMode(){
   var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -5369,7 +5455,7 @@ function refreshListActions(listId,itemClass){
       actions.appendChild(dn);
     }
     const del=document.createElement('button');
-    del.type='button';del.className='delete-btn';del.textContent='🗑 Delete';
+    del.type='button';del.className='delete-btn';del.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg> Delete';
     del.onclick=()=>{item.remove();refreshListActions(listId,itemClass);};
     actions.appendChild(del);
   });
@@ -6056,15 +6142,15 @@ window.addEventListener('beforeunload',function(e){
 <!-- ══ CROPPER MODAL ══ -->
 <div aria-label="Crop your photo" aria-modal="true" id="cropper-modal" onclick="if(event.target===this)cancelCrop()" role="dialog">
 <div class="cropper-card">
-<h3>✂️ Crop Your Photo</h3>
+<h3 style="display:flex;align-items:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg> Crop Your Photo</h3>
 <div class="cropper-img-wrap">
 <img alt="Photo to crop" id="cropper-img"/>
 </div>
 <p class="cropper-hint">Drag to reposition · Resize handles to adjust · 1:1 square enforced</p>
 <div class="cropper-actions">
-<button class="cropper-btn danger" onclick="chooseDifferentPhoto()">📁 Choose Different Photo</button>
+<button class="cropper-btn danger" onclick="chooseDifferentPhoto()"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Choose Different Photo</button>
 <button class="cropper-btn secondary" onclick="cancelCrop()">Cancel</button>
-<button class="cropper-btn primary" onclick="saveCrop()">✓ Save Crop</button>
+<button class="cropper-btn primary" onclick="saveCrop()"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Save Crop</button>
 </div>
 </div>
 </div>
