@@ -1409,6 +1409,11 @@
     [data-theme="dark"] .pay-order{background:#1c2128;border-color:#30363d}
     [data-theme="dark"] .pay-order-row{border-bottom-color:#30363d}
     [data-theme="dark"] .qr-mobile-helper{background:#1f2d3d;border-color:#2196D344;color:#c9d1d9}
+    [data-theme="dark"] #screen-2 h2,
+    [data-theme="dark"] #pay-method-title,
+    [data-theme="dark"] #qr-title{color:#e6edf3!important}
+    [data-theme="dark"] .qr-panel > div[style*="color:#333"]{color:#e6edf3!important}
+    [data-theme="dark"] .qr-panel > div[style*="color:#888"]{color:#9da7b3!important}
     [data-theme="dark"] .payment-trust-badge{background:#0f2318;border-color:#1a3d27;color:#4ade80}
     [data-theme="dark"] .payment-trust-badge .lock{background:#16a34a}
     [data-theme="dark"] .demo-payment-note{background:#261508;border-color:#f97316aa;color:#fb923c}
@@ -1444,6 +1449,227 @@
 
     /* ── END DARK MODE ── */
 
+    /* Screen-only landing and information-form polish. CV/print rules stay isolated. */
+    @media screen {
+      #landing-home .landing-card{border-width:1px;box-shadow:0 8px 28px rgba(27,46,94,.055)}
+      #landing-home .landing-primary-btn{min-height:48px;line-height:1.5;border-radius:14px}
+      #landing-home .landing-primary-btn:focus-visible{outline:3px solid #F47B20;outline-offset:4px}
+      #landing-home .landing-section-head h2{line-height:1.5}
+      #landing-home .why-card,#landing-home .how-card,#landing-home .audience-card{border-width:1px}
+      #landing-home .price-card{background:radial-gradient(ellipse at 95% 0,rgba(33,150,211,.55),transparent 65%),linear-gradient(130deg,#15264e,#24477d)}
+      #screen-1 .acc-card{border:1px solid #dce5ef;border-radius:18px;box-shadow:0 3px 14px rgba(27,46,94,.04);scroll-margin-top:90px}
+      #screen-1 .acc-card.open{border-color:#8bbbd8;box-shadow:0 6px 22px rgba(27,46,94,.07)}
+      #screen-1 .acc-title-wrap{min-width:0}
+      #screen-1 .acc-title{line-height:1.6}
+      #screen-1 .acc-sub{line-height:1.65}
+      #screen-1 .acc-badge{border-radius:11px}
+      #screen-1 .acc-body{background:#f7f9fc}
+      #screen-1 .field{min-width:0}
+      #screen-1 input,#screen-1 select,#screen-1 textarea,#screen-1 .ql-editor{scroll-margin-block:100px 140px}
+      [data-theme="dark"] #screen-1 .acc-card{background:#161b22;border-color:#303d50}
+      [data-theme="dark"] #screen-1 .acc-card.open{border-color:#467899}
+      [data-theme="dark"] #screen-1 .acc-body{background:#111923}
+      [data-theme="dark"] #landing-home .landing-secondary-note{color:#b1bfd1}
+    }
+    @media screen and (max-width:600px) {
+      #landing-home{padding:14px 12px 0}
+      #landing-home .landing-card{border-radius:22px;margin-bottom:14px}
+      #landing-home .landing-hero{padding:22px 20px 16px;gap:8px;background:radial-gradient(ellipse at 95% 0,#e6f0ff,transparent 65%),linear-gradient(155deg,#fff,#f5f8fc)}
+      #landing-home .landing-kicker{font-size:10px;line-height:1.5;padding:5px 9px;margin-bottom:12px;border-width:1px}
+      #landing-home .landing-hero h1{font-size:clamp(27px,7.7vw,34px);line-height:1.4;letter-spacing:-.025em;margin-bottom:10px}
+      #landing-home .landing-hero p{font-size:14px;line-height:1.75;margin-bottom:14px}
+      #landing-home .landing-cta-row{gap:10px;margin-top:12px}
+      #landing-home .landing-primary-btn{width:100%;padding:12px 14px;font-size:14px}
+      #landing-home .landing-secondary-note{font-size:11px;line-height:1.7;font-weight:500}
+      #landing-home .landing-stat-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:16px}
+      #landing-home .landing-stat{padding:10px 6px;border-radius:12px;text-align:center;border-width:1px;background:rgba(255,255,255,.75)}
+      #landing-home .landing-stat b{font-size:19px;color:#1B2E5E}
+      #landing-home .landing-stat:first-child b{color:#c45a0f}
+      #landing-home .landing-stat span{font-size:10px;line-height:1.65;font-weight:600;margin-top:4px}
+      #landing-home .landing-visual{min-height:158px;height:158px}
+      #landing-home .cv-stack{width:116px;height:144px}
+      #landing-home .cv-stack-card{border-radius:9px}
+      #landing-home .cv-stack-card.front{padding:10px;transform:rotate(5deg) translate(9px,0)}
+      #landing-home .cv-stack-card.back{transform:rotate(-9deg) translate(-14px,3px)}
+      #landing-home .cv-demo-top{height:36px;margin:-10px -10px 9px;padding:8px 10px;gap:6px}
+      #landing-home .cv-demo-avatar{width:22px;height:22px;flex-shrink:0}
+      #landing-home .cv-demo-line{height:4px;margin-bottom:4px}
+      #landing-home .cv-demo-section{height:4px;margin:8px 0 5px}
+      #landing-home .cv-demo-row{height:3px;margin-bottom:4px}
+      #landing-home .landing-section{padding:22px 18px}
+      #landing-home .landing-section-head{text-align:left;margin-bottom:16px}
+      #landing-home .landing-section-head h2{font-size:22px;letter-spacing:-.02em;margin-bottom:6px}
+      #landing-home .landing-section-head p{font-size:13px;line-height:1.75}
+      #landing-home .how-grid{grid-template-columns:1fr;gap:0}
+      #landing-home .how-card{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:12px;text-align:left;background:transparent;border:0;border-radius:0;padding:0 0 18px;position:relative}
+      #landing-home .how-card:not(:last-child)::after{content:"";position:absolute;left:15px;top:38px;bottom:6px;width:2px;background:#dce7f4}
+      #landing-home .how-card:last-child{padding-bottom:0}
+      #landing-home .how-num{grid-row:1 / span 2;width:32px;height:32px;border-radius:10px;margin:0;font-size:13px;box-shadow:none}
+      #landing-home .how-card h3{font-size:14px;line-height:1.65;margin:3px 0 4px}
+      #landing-home .how-card p{grid-column:2;font-size:12px;line-height:1.75;font-weight:400}
+      #landing-home .why-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      #landing-home .why-card{display:block;padding:13px 11px;border-radius:14px;background:#f7f9fc}
+      #landing-home .why-icon{width:30px;height:30px;border-radius:9px;margin-bottom:8px}
+      #landing-home .why-icon svg{width:17px;height:17px}
+      #landing-home .why-card h3{font-size:12px;line-height:1.75;margin-bottom:5px;overflow-wrap:anywhere}
+      #landing-home .why-card p{font-size:11px;line-height:1.8}
+      #landing-home .audience-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      #landing-home .audience-card{display:flex;align-items:center;gap:8px;text-align:left;padding:12px 10px;border-radius:12px;min-width:0}
+      #landing-home .audience-card:last-child{grid-column:1/-1}
+      #landing-home .audience-card .emoji{display:flex;flex:0 0 22px;margin:0;color:#366b9b}
+      #landing-home .audience-card svg{width:22px;height:22px}
+      #landing-home .audience-card h3{font-size:12px;line-height:1.7}
+      #landing-home .price-card{padding:24px 20px;gap:16px;text-align:left;position:relative}
+      #landing-home .price-card h2{font-size:24px;line-height:1.55;padding-right:70px}
+      #landing-home .price-card p{font-size:13px;line-height:1.8}
+      #landing-home .price-badge{position:absolute;top:24px;right:20px;width:62px;height:62px;border-radius:16px;box-shadow:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+      #landing-home .price-badge span{font-size:9px;color:#ffd5b4}
+      #landing-home .price-badge b{font-size:30px}
+      #landing-home .price-card .landing-cta-row{margin-top:18px}
+      .main{padding:20px 12px 32px;scroll-margin-top:80px}
+      #screen-1 .acc-card{margin-bottom:10px;border-radius:16px}
+      #screen-1 .acc-header{padding:14px 12px;gap:10px;min-height:68px}
+      #screen-1 .acc-title{font-size:14px;letter-spacing:0}
+      #screen-1 .acc-sub{font-size:11px;margin-top:3px}
+      #screen-1 .acc-badge{width:30px;height:30px;font-size:12px;flex:0 0 30px}
+      #screen-1 .acc-arrow{width:22px;height:22px;font-size:12px;flex:0 0 22px}
+      #screen-1 .acc-body{padding:16px 13px}
+      #screen-1 .form-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+      #screen-1 label{font-size:13px;line-height:1.75}
+      #screen-1 input,#screen-1 select,#screen-1 textarea{font-size:16px;min-height:48px;padding:11px 12px;border-radius:11px}
+      #screen-1 .ql-editor{font-size:16px;line-height:1.7}
+      #screen-1 .sub-item{padding:14px 11px;border-radius:12px}
+      #screen-1 .photo-upload{padding:20px 14px}
+      #screen-1 .add-row-btn{min-height:46px;font-size:13px}
+      #screen-1>.screen-footer{padding-bottom:12px}
+      .sticky-nav{padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid #dce5ef;background:rgba(255,255,255,.97);box-shadow:0 -4px 20px rgba(27,46,94,.07);gap:8px}
+      .sticky-nav .btn-row{gap:8px;align-items:stretch}
+      .sticky-nav .btn{min-height:48px;padding:10px 14px;font-size:13px;border-radius:12px;line-height:1.6;white-space:normal}
+      #stickyNext{flex:1;min-width:0}
+      #stickyBack{flex:0 0 auto}
+      body.has-sticky-nav{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+      body.has-sticky-nav .back-to-top{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+      [data-theme="dark"] #landing-home .landing-hero{background:radial-gradient(ellipse at 95% 0,#233451,transparent 65%),linear-gradient(155deg,#161b22,#1b2432)}
+      [data-theme="dark"] #landing-home .landing-stat{background:#1c2839;border-color:#33435b}
+      [data-theme="dark"] #landing-home .landing-stat b{color:#b8d8ff}
+      [data-theme="dark"] #landing-home .landing-stat:first-child b{color:#ffb879}
+      [data-theme="dark"] #landing-home .landing-stat span{color:#b1bfd1}
+      [data-theme="dark"] #landing-home .how-card{background:transparent}
+      [data-theme="dark"] #landing-home .how-card::after{background:#33435b}
+      [data-theme="dark"] #landing-home .why-card{background:#1c2533;border-color:#33435b}
+      [data-theme="dark"] #landing-home .audience-card .emoji{color:#8fbffa}
+      [data-theme="dark"] .sticky-nav{background:rgba(17,25,35,.97);border-top-color:#33435b;box-shadow:0 -4px 20px rgba(0,0,0,.2)}
+    }
+
+    /* Presentation motion only. No selectors target CV sheets or print content. */
+    @media screen and (prefers-reduced-motion:no-preference) {
+      @keyframes ui-fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes ui-float-soft{0%,100%{translate:0 0}50%{translate:0 -5px}}
+      @keyframes ui-nav-in{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+      @keyframes ui-success-in{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+      #landing-home .ui-reveal.ui-visible{animation:ui-fade-up 550ms cubic-bezier(.22,.61,.36,1) both;animation-delay:var(--ui-delay,0ms)}
+      #landing-home .hero-resume-stage.ui-visible{animation:ui-fade-up 650ms ease-out both,ui-float-soft 6s ease-in-out 700ms infinite}
+      #screen-1 .acc-card.open .acc-body{animation:ui-fade-up 320ms ease-out}
+      #screen-1 .acc-body:focus-within{animation:none}
+      #screen-1 .acc-arrow{transition:transform 320ms ease,color 250ms ease}
+      #screen-1 .acc-badge{transition:background-color 250ms ease,color 250ms ease}
+      #screen-2 .tpl-card{transition:transform 250ms ease,border-color 300ms ease,box-shadow 300ms ease}
+      #screen-2 .tpl-card.selected .tpl-selected-badge{animation:ui-fade-up 300ms ease-out}
+      #landing-home .landing-primary-btn,#screen-1 .btn,#screen-1 .add-row-btn,#screen-4 .btn,#stickyNav .btn{transition:transform 180ms ease,box-shadow 250ms ease,background-color 250ms ease}
+      #landing-home .audience-card,#landing-home .why-card{transition:translate 250ms ease,box-shadow 250ms ease}
+      #landing-home .landing-primary-btn:active,#screen-1 .btn:active,#screen-1 .add-row-btn:active,#screen-4 .btn:active,#stickyNav .btn:active{transform:scale(.98)}
+      #landing-home .audience-card:active{translate:0 1px}
+      #screen-2 .tpl-card:active{transform:scale(.995)}
+      #stickyNav.visible{animation:ui-nav-in 350ms ease-out}
+      #screen-4.active .success-ring{animation:ui-success-in 550ms ease-out both}
+      #screen-4.active .success-ring svg{animation:ui-success-in 450ms ease-out 150ms both}
+    }
+    @media screen and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+      #landing-home .why-card:hover,#landing-home .audience-card:hover{translate:0 -3px;box-shadow:0 7px 18px #1b2e5e12}
+      #landing-home .landing-primary-btn:hover,#screen-1 .add-row-btn:hover,#screen-4 .btn:hover,#stickyNav .btn:hover{transform:translateY(-2px)}
+      #screen-2 .tpl-card:hover{transform:translateY(-3px)}
+    }
+    @media screen and (prefers-reduced-motion:reduce) {
+      html{scroll-behavior:auto!important}
+      #landing-home .ui-reveal,#landing-home .hero-resume-stage,#landing-home .landing-primary-btn,
+      #landing-home .why-card,#landing-home .audience-card,#screen-1 .acc-card,#screen-1 .acc-body,
+      #screen-1 .acc-arrow,#screen-1 .acc-badge,#screen-1 .btn,#screen-1 .add-row-btn,
+      #screen-2 .tpl-card,#screen-2 .tpl-selected-badge,#stickyNav,#stickyNav .btn,
+      #screen-4 .success-ring,#screen-4 .success-ring svg,#screen-4 .btn{animation:none!important;transition:none!important}
+      #landing-home .landing-primary-btn:hover,#screen-1 .btn:hover,#screen-1 .add-row-btn:hover,
+      #screen-2 .tpl-card:hover,#screen-4 .btn:hover,#stickyNav .btn:hover{transform:none}
+    }
+
+    /* Slider framing only: preserve the portrait headroom and separate copy from faces. */
+    @media screen {
+      #banner,#banner .banner-slide{height:380px}
+      #banner .banner-slide{background:#142641}
+      #banner .banner-slide>img{object-position:center top!important}
+      #banner .slide1>img{left:30%!important;width:70%!important;object-position:center top!important}
+      #banner .banner-slide::after{background:linear-gradient(90deg,#142641 0%,#142641 30%,rgba(20,38,65,.75) 45%,rgba(20,38,65,.12) 73%,rgba(20,38,65,.04) 100%)}
+      #banner .banner-copy{left:max(72px,calc((100% - 1140px)/2));width:40%;max-width:510px;top:50%;transform:translateY(-50%);text-align:left;padding:0}
+      #banner .banner-copy h2{font-size:32px;line-height:1.45;letter-spacing:-.02em;text-shadow:0 2px 10px #0002}
+      #banner .banner-copy p{font-size:14px;line-height:1.8;margin:10px 0 0;color:#e6edf7}
+      #banner .banner-arrow{background:rgba(20,38,65,.5);width:36px;height:36px;border-color:#ffffff40}
+    }
+    @media screen and (max-width:700px) {
+      #banner,#banner .banner-slide{height:510px}
+      #banner .banner-slide>img{height:230px!important;object-position:center top!important}
+      #banner .slide1>img{left:0!important;width:100%!important}
+      #banner .banner-slide::after{background:linear-gradient(180deg,rgba(20,38,65,.02) 0,rgba(20,38,65,.03) 145px,rgba(20,38,65,.8) 212px,#142641 240px)}
+      #banner .banner-copy{left:24px;right:24px;top:249px;width:auto;max-width:none;transform:none;padding:0;text-align:left}
+      #banner .banner-copy h2{font-size:23px;line-height:1.5}
+      #banner .banner-copy p{font-size:13px;line-height:1.8;margin-top:9px}
+      #banner .banner-arrow{top:112px;width:32px;height:32px;font-size:16px}
+      #banner .banner-arrow.left{left:12px}
+      #banner .banner-arrow.right{right:12px}
+      #banner .banner-dots{bottom:16px}
+    }
+
+    /* Hero product mockup only; independent of the CV builder and print layout. */
+    @media screen {
+      #landing-home .landing-hero{grid-template-columns:1.12fr 1fr;gap:42px;padding:42px;background:radial-gradient(ellipse at 92% 18%,#e1eafa 0,transparent 56%),linear-gradient(135deg,#fff 25%,#f4f7fb);isolation:isolate}
+      #landing-home .landing-hero h1{line-height:1.3}
+      #landing-home .landing-hero .landing-kicker{background:#fff8f1;border:1px solid #f1ddca;font-weight:700}
+      #landing-home .landing-hero .landing-primary-btn{background:linear-gradient(135deg,#1b2e5e,#294c83);box-shadow:0 7px 18px #1b2e5e25;border:1px solid #ffffff20}
+      #landing-home .landing-hero .landing-primary-btn:hover{background:#294c83;box-shadow:0 9px 22px #1b2e5e35}
+      #landing-home .landing-hero .landing-stat{background:#ffffffa8;border:1px solid #dfe7f0;box-shadow:0 2px 5px #1b2e5e03}
+      #landing-home .hero-resume-stage{min-height:490px;height:auto;flex-direction:column;padding:18px 16px 0;gap:22px}
+      #landing-home .hero-resume-paper{width:324px;height:458px;flex:0 0 auto;display:grid;grid-template-columns:105px 1fr;background:#fff;color:#24314a;border:1px solid #e3e7ed;border-radius:2px;transform:rotate(2deg);box-shadow:0 24px 44px -18px #243d6366,0 2px 6px #243d6312;position:relative;text-align:left;font-family:Arial,sans-serif;line-height:1.5}
+      #landing-home .hero-resume-paper::before{content:"";position:absolute;inset:5px -6px -6px 4px;background:#fdfefe;border:1px solid #dce3ec;transform:rotate(-4deg);z-index:-1;box-shadow:0 4px 8px #243d6309}
+      #landing-home .hero-resume-side{background:#20344e;padding:23px 12px;color:#dce5ef;min-width:0}
+      #landing-home .hero-resume-photo{display:block;width:80px;height:90px;object-fit:cover;object-position:center 35%;border-radius:2px;background:#d7dce2;margin:0 0 23px}
+      #landing-home .hero-resume-side-heading{font-size:7px;font-weight:700;letter-spacing:1.1px;color:#fff;border-bottom:1px solid #ffffff30;padding-bottom:5px;margin:18px 0 7px}
+      #landing-home .hero-resume-contact{font-size:6.3px;line-height:1.9;color:#d3ddea;overflow-wrap:anywhere}
+      #landing-home .hero-resume-degree{font-size:6.5px;font-weight:700;color:#fff}
+      #landing-home .hero-resume-main{padding:26px 20px 18px;min-width:0;position:relative}
+      #landing-home .hero-resume-eyebrow{font-size:5.7px;letter-spacing:1.6px;color:#7a8596;margin-bottom:9px}
+      #landing-home .hero-resume-name{font-size:26px;letter-spacing:1px;font-weight:700;line-height:1.06;color:#20344e}
+      #landing-home .hero-resume-role{font-size:6px;font-weight:700;letter-spacing:1.1px;margin-top:9px;color:#5b6c82}
+      #landing-home .hero-resume-rule{width:28px;height:2px;background:#df975f;margin:15px 0 18px}
+      #landing-home .hero-resume-heading{font-size:7px;font-weight:700;letter-spacing:1.1px;border-bottom:1px solid #e2e6ec;margin:13px 0 6px;padding-bottom:4px;color:#24364e}
+      #landing-home .hero-resume-copy{font-size:6.5px;line-height:1.7;color:#667080}
+      #landing-home .hero-resume-job{font-size:7px;font-weight:700;color:#263850;margin-top:8px}
+      #landing-home .hero-resume-meta{font-size:5.8px;color:#8590a0;margin:2px 0 4px}
+      #landing-home .hero-resume-bullets{font-size:6.3px;line-height:1.75;color:#667080;padding-left:9px;margin:4px 0 9px}
+      #landing-home .hero-resume-footer{position:absolute;bottom:17px;left:20px;right:20px;border-top:1px solid #e4e8ee;padding-top:6px;font-size:5px;letter-spacing:1px;color:#8691a0;display:flex;justify-content:space-between}
+      #landing-home .hero-resume-caption{font-size:12px;line-height:1.8;color:#687991;text-align:center;letter-spacing:.2px}
+      [data-theme="dark"] #landing-home .landing-hero{background:radial-gradient(ellipse at 95% 20%,#263b58,transparent 65%),linear-gradient(140deg,#161d29,#1c2839)}
+      [data-theme="dark"] #landing-home .landing-hero .landing-kicker{background:#352c28;border-color:#5e4534;color:#ffc18d}
+      [data-theme="dark"] #landing-home .landing-hero .landing-stat{background:#243248;border-color:#3b4b61}
+      [data-theme="dark"] #landing-home .hero-resume-caption{color:#bbc9dc}
+    }
+    @media screen and (max-width:900px) {
+      #landing-home .landing-hero{grid-template-columns:1fr;gap:20px;padding:30px}
+    }
+    @media screen and (max-width:600px) {
+      #landing-home .landing-hero{padding:24px 20px 18px;gap:20px}
+      #landing-home .landing-hero h1{font-size:30px;line-height:1.4}
+      #landing-home .landing-hero .landing-stat{padding:10px 5px;border-radius:12px}
+      #landing-home .hero-resume-stage{height:375px;min-height:375px;padding:0;gap:0;justify-content:flex-start}
+      #landing-home .hero-resume-paper{transform:scale(.72) rotate(1.5deg);transform-origin:top center;margin-bottom:-128px}
+      #landing-home .hero-resume-caption{font-size:11px;margin-top:15px;max-width:100%}
+    }
 </style>
 <!-- Flash-prevention: apply saved theme before first paint -->
 <script>
@@ -1496,7 +1722,42 @@
 <div class="landing-stat"><b>5–10</b><span data-en="Minutes to create" data-kh="នាទីក្នុងការបង្កើត">Minutes to create</span></div>
 </div>
 </div>
-<div class="landing-visual"><div class="cv-stack"><div class="cv-stack-card back"></div><div class="cv-stack-card front"><div class="cv-demo-top"><div class="cv-demo-avatar"></div><div class="cv-demo-lines"><div class="cv-demo-line"></div><div class="cv-demo-line short"></div></div></div><div class="cv-demo-section"></div><div class="cv-demo-row w85"></div><div class="cv-demo-row w70"></div><div class="cv-demo-row w55"></div><div class="cv-demo-section"></div><div class="cv-demo-row w85"></div><div class="cv-demo-row w70"></div><div class="cv-demo-row w55"></div></div></div></div>
+<div class="landing-visual hero-resume-stage" role="img" aria-label="Example professional A4 resume with profile photo, experience, education and skills">
+  <div class="hero-resume-paper" aria-hidden="true">
+    <div class="hero-resume-side">
+      <img class="hero-resume-photo" src="data:image/jpeg;base64,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" alt="" width="80" height="90" decoding="async"/>
+      <div class="hero-resume-side-heading">CONTACT</div>
+      <div class="hero-resume-contact">Phnom Penh, Cambodia<br/>sok.sophea@example.com<br/>+855 12 345 678</div>
+      <div class="hero-resume-side-heading">EXPERTISE</div>
+      <div class="hero-resume-contact">Brand strategy<br/>Digital campaigns<br/>Market research<br/>Team leadership</div>
+      <div class="hero-resume-side-heading">LANGUAGES</div>
+      <div class="hero-resume-contact">Khmer · Native<br/>English · Professional</div>
+      <div class="hero-resume-side-heading">EDUCATION</div>
+      <strong class="hero-resume-degree">Bachelor of Business</strong>
+      <div class="hero-resume-contact">Marketing<br/>Phnom Penh · 2016–2020</div>
+    </div>
+    <div class="hero-resume-main">
+      <div class="hero-resume-eyebrow">CURRICULUM VITAE</div>
+      <div class="hero-resume-name">SOK<br/>SOPHEA</div>
+      <div class="hero-resume-role">MARKETING MANAGER</div>
+      <div class="hero-resume-rule"></div>
+      <div class="hero-resume-heading">PROFILE</div>
+      <div class="hero-resume-copy">Marketing professional with experience building brands, leading teams and delivering thoughtful campaigns for Cambodian businesses.</div>
+      <div class="hero-resume-heading">EXPERIENCE</div>
+      <div class="hero-resume-job">Marketing Manager</div>
+      <div class="hero-resume-meta">Brand Studio · 2023–Present</div>
+      <ul class="hero-resume-bullets"><li>Lead brand strategy and digital campaigns.</li><li>Coordinate creative teams and partners.</li><li>Turn customer insights into measurable growth.</li></ul>
+      <div class="hero-resume-job">Marketing Executive</div>
+      <div class="hero-resume-meta">Creative Agency · 2020–2023</div>
+      <ul class="hero-resume-bullets"><li>Planned content and social campaigns.</li><li>Supported product launches and reporting.</li></ul>
+      <div class="hero-resume-heading">SELECTED PROJECT</div>
+      <div class="hero-resume-job">Local Brand Launch</div>
+      <div class="hero-resume-copy">A coordinated launch across digital channels, retail and community events.</div>
+      <div class="hero-resume-footer">MYCVKH <span>EXAMPLE CV · 01</span></div>
+    </div>
+  </div>
+  <div class="hero-resume-caption" data-en="A polished first impression." data-kh="ចំណាប់អារម្មណ៍ដំបូងប្រកបដោយវិជ្ជាជីវៈ។">A polished first impression.</div>
+</div>
 </div>
 <div class="landing-card landing-section" id="how-it-works">
 <div class="landing-section-head"><h2 data-en="How MyCVKH works" data-kh="របៀបប្រើ MyCVKH">How MyCVKH works</h2><p data-en="A simple process from filling your information to downloading your final CV." data-kh="ដំណើរការងាយៗ ចាប់ពីបំពេញព័ត៌មានរហូតដល់ទាញយក CV របស់អ្នក។">A simple process from filling your information to downloading your final CV.</p></div>
@@ -1565,11 +1826,6 @@
 <div class="banner-dot" id="dot1" onclick="gotoBanner(1)"></div>
 <div class="banner-dot" id="dot2" onclick="gotoBanner(2)"></div>
 </div>
-</div>
-<div class="banner-dots">
-<div class="banner-dot active" id="dot0" onclick="gotoBanner(0)"></div>
-<div class="banner-dot" id="dot1" onclick="gotoBanner(1)"></div>
-<div class="banner-dot" id="dot2" onclick="gotoBanner(2)"></div>
 </div>
 
 <!-- ── STEP BAR ── -->
@@ -2053,7 +2309,7 @@
 </div>
 </div>
 <div class="screen-footer">
-<p class="helper" id="s3-helper">Having trouble? Contact us on Telegram @mycvkh</p>
+<p class="helper" id="s3-helper">Having trouble? Contact us: Email: <a href="mailto:mycvkh@gmail.com">mycvkh@gmail.com</a> · Tel: <a href="tel:017400044">017 400 044</a></p>
 </div>
 </div>
 <!-- ══ SCREEN 4: DOWNLOAD ══ -->
@@ -2130,7 +2386,7 @@ const T = {
     payLabel:"Your CV is ready for just",payUsd:"",paySublabel:"One-time · No subscription · Instant download",
     payMethodTitle:"Payment Method",payAbaSub:"Scan with ABA, ACLEDA, Canadia, Wing and any Cambodian bank app",
     porTemplate:"Template",porLang:"Language",porTotal:"Total",qrTitle:"Scan to Pay",qrSub:"Scan with your banking app",
-    s3Helper:"Having trouble? Contact us on Telegram @mycvkh",
+    s3Helper:'Having trouble? Contact us: Email: <a href="mailto:mycvkh@gmail.com">mycvkh@gmail.com</a> · Tel: <a href="tel:017400044">017 400 044</a>',
     dlTitle:"Payment Confirmed!",dlNameLbl:"Applicant",dlTplLbl:"Template",dlLangLbl:"Language",
     dlBtn:"Download CV (PDF)",dlNew:"+ Create Another CV",dlHome:"Back to Home",
     modalCancel:"Cancel",modalSelect:"Select This Template →",
@@ -2144,14 +2400,15 @@ const T = {
     payLabel:"CV អ្នករួចរាល់ ទូទាត់តែ",payUsd:"",paySublabel:"ការទូទាត់តែម្ដង · គ្មានការជាវ",
     payMethodTitle:"ជ្រើសរបៀបទូទាត់",payAbaSub:"Scan QR ឬ Transfer ទៅ ABA, ACLEDA និងធនាគារផ្សេងទៀត",
     porTemplate:"Template",porLang:"ភាសា",porTotal:"សរុប",qrTitle:"Scan ដើម្បីបង់",qrSub:"Scan តាមកម្មវិធីធនាគារ",
-    s3Helper:"មានបញ្ហា? ទំនាក់ទំនង Telegram @mycvkh",
+    s3Helper:'មានបញ្ហា? ទំនាក់ទំនង៖ Email: <a href="mailto:mycvkh@gmail.com">mycvkh@gmail.com</a> · Tel: <a href="tel:017400044">017 400 044</a>',
     dlTitle:"ការទូទាត់បានបញ្ជាក់!",dlNameLbl:"ឈ្មោះ",dlTplLbl:"Template",dlLangLbl:"ភាសា",
     dlBtn:"ទាញ CV (PDF)",dlNew:"+ បង្កើត CV ថ្មី",dlHome:"ត្រឡប់ទំព័រដើម",
     modalCancel:"បោះបង់",modalSelect:"ជ្រើស Template នេះ →",
     pill1:"ព័ត៌មាន",pill2:"Template",pill3:"ការទូទាត់",pill4:"ទាញយក"
   }
 };
-let lang = "en";
+let lang = "km";
+document.addEventListener("DOMContentLoaded",function(){setLang("km");});
 function setLang(l){
   window.currentLang = l;
   setTimeout(function(){ if(window.applyKhmerPolish) window.applyKhmerPolish(); }, 80);
@@ -2172,7 +2429,7 @@ function applyLang(){
   set("por-template",t.porTemplate);set("por-lang",t.porLang);set("por-total",t.porTotal);
   set("por-lang-val",lang==="en"?"English":"ខ្មែរ");
   set("qr-title",t.qrTitle);set("qr-sub",t.qrSub);
-  set("s3-helper",t.s3Helper);
+  const s3h=document.getElementById("s3-helper");if(s3h)s3h.innerHTML=t.s3Helper;
   set("dl-title",t.dlTitle);set("dl-name-lbl",t.dlNameLbl);set("dl-tpl-lbl",t.dlTplLbl);set("dl-lang-lbl",t.dlLangLbl);
   set("dl-btn-txt",t.dlBtn);set("dl-new",t.dlNew);set("dl-home-txt",t.dlHome);
   set("modal-cancel",t.modalCancel);set("modal-select",t.modalSelect);
@@ -2347,10 +2604,11 @@ const TEMPLATES = [
     {n:'Jason Eaton',   id:'t43', badges:['New','Brown Editorial'], d:'Warm cream/paper background with full-width brown header. Large portrait photo on left with boxed education and reference sections. Right column with skills bars, numbered experience and hobbies.'},
     {n:'Michal Smith',  id:'t44', badges:['New','Black Yellow'],    d:'Dark charcoal sidebar with circular photo, yellow icon circles for contact, skills dots and language list. White main area with yellow vertical accent bar next to large name and clean timeline sections.'},
     {n:'Clara Smith',   id:'t45', badges:['New','Blue Geometric'],  d:'Dark navy right sidebar with rectangular photo, name, contact and skill bars. White main area with angled geometric navy shapes at top and clean sections for summary, experience and education.'},
-    {n:'Brian Baxter',  id:'t46', badges:['New','Charcoal Gray'],   d:'Dark charcoal left sidebar with circular photo and orange-accented section icons for contact, references and education. White main area with uppercase name, job experience timeline and skills bars.'},
-    {n:'Baxter Orange', id:'t47', badges:['New','Orange Frame'],    d:'White background with bold orange border-frame and orange-ringed circular photo. Left panel for contact and references, right panel for name, experience timeline with date badges, education and skills.'},
-    {n:'Thomas Smith',  id:'t48', badges:['New','Royal Blue'],      d:'Royal blue left sidebar with white-ringed circular photo and dot-style skills. White main area with bold uppercase name, blue horizontal rule, about me paragraph and work experience timeline.'},
-    {n:'Olivia Wilson', id:'t49', badges:['New','Teal Minimal'],    d:'Near-black narrow left column with teal section headers for contact, education, skills and language. White right column with circular photo, large name, about me, experience timeline and references grid.'},
+    {n:'Thomas Smith',  id:'t46', badges:['New','Blue Corporate'], d:'Royal-blue capsule profile panel with photo, contact and education on the left; spacious white experience, references, hobbies and skills area on the right.'},
+    {n:'Brian Baxter',  id:'t47', badges:['New','Black & Gold'],   d:'Strong charcoal sidebar with gold accents, circular photo, contact, references and education; clean white professional content area.'},
+    {n:'Olivia Wilson', id:'t48', badges:['New','Grey & Blue'],    d:'Slim charcoal contact sidebar with bright-blue section bands and a clean modern white main area for profile, experience and references.'},
+    {n:'Brian Baxter',  id:'t49', badges:['New','Black & Grey'],   d:'Professional grey sidebar with top-left portrait, contact, references and education; crisp work experience and skills content on white.'},
+    {n:'Johnson Smith', id:'t50', badges:['New','Modern Blue'],    d:'Modern blue geometric profile header, pale-blue information column and structured white section blocks for experience and professional skills.'},
 ];
 
 /* ── DATA HELPERS ── */
@@ -2531,6 +2789,7 @@ function buildFullHTML(t){
   if(t.id==='t47') return buildT47(d);
   if(t.id==='t48') return buildT48(d);
   if(t.id==='t49') return buildT49(d);
+  if(t.id==='t50') return buildT50(d);
 return '';
 }
 
@@ -4285,7 +4544,7 @@ function buildT45(d){
   </div>`;
 }
 
-function buildT46(d){
+function legacyBuildT46(d){
   /* Layout: dark charcoal LEFT sidebar (220px) | white MAIN (flex:1)
      Sidebar: circular photo → Contact Me → References → Education (orange circle icons)
      Main: uppercase name + orange underbar → About Me → Job Experience → Skills bars
@@ -4312,7 +4571,7 @@ function buildT46(d){
   </div>`;
 }
 
-function buildT47(d){
+function legacyBuildT47(d){
   /* Layout: white bg, thick orange outer border-frame
      Left panel (195px, cream bg): circular photo in orange ring → Contact Me → References
      Right panel (flex:1): uppercase name + orange underbar → About Me → Job Experience (orange date tags) → Education → Skills
@@ -4349,7 +4608,7 @@ function buildT47(d){
   </div>`;
 }
 
-function buildT48(d){
+function legacyBuildT48(d){
   /* Layout: royal blue LEFT sidebar (230px) | white MAIN (flex:1)
      Sidebar: circular photo (white ring) → Contact Me → My Education → References → Hobbies → Skills (dots)
      Main: bold uppercase name + blue rule + subtitle → About Me → Work Experience timeline
@@ -4378,7 +4637,7 @@ function buildT48(d){
   </div>`;
 }
 
-function buildT49(d){
+function legacyBuildT49(d){
   /* Layout: near-black narrow LEFT column (240px) | white RIGHT column (flex:1)
      Left: teal section headers → Contact, Education, Skills (dots), Language
      Right: large name + circular photo top-right → About Me → Experience timeline → References grid
@@ -4405,6 +4664,300 @@ function buildT49(d){
       ${d.summary?`<div style="margin-bottom:14px;">${MH('About Me')}<p style="margin:0;font-size:8.5px;color:${MID};line-height:1.7;">${cv3033Text(d.summary)}</p></div>`:''}
       ${cv3033Arr(d.expItems).length?`<div style="margin-bottom:14px;">${MH('Experience')}${cv3033Exp(d,TEAL,4,false)}</div>`:''}
       ${refsHTML?`<div>${MH('References')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;">${refsHTML}</div></div>`:''}
+    </div>
+  </div>`;
+}
+
+/* ── Templates 46-50: saved-reference layouts ── */
+function t4650Heading(label,color,mode){
+  if(mode==='pill')return `<div class="cvh" style="display:inline-block;background:${color};color:#fff;border-radius:18px;padding:5px 16px;margin:0 0 10px;font-size:10px;font-weight:900;letter-spacing:.35px;text-transform:uppercase;line-height:1;">${cv3033Text(label)}</div>`;
+  if(mode==='outline')return `<div class="cvh" style="display:flex;align-items:center;border:1.5px solid ${color};border-radius:18px;height:28px;padding:0 12px;margin:0 0 10px;color:#343434;font-size:10px;font-weight:900;text-transform:uppercase;box-sizing:border-box;"><span style="width:18px;height:18px;border-radius:50%;background:${color};color:#fff;margin-left:-18px;margin-right:9px;display:grid;place-items:center;font-size:8px;">●</span>${cv3033Text(label)}</div>`;
+  return `<div class="cvh" style="display:flex;align-items:center;gap:7px;margin:0 0 9px;color:${color};font-size:10px;font-weight:900;text-transform:uppercase;"><span style="width:15px;height:15px;border-radius:50%;background:${color};color:#fff;display:grid;place-items:center;font-size:7px;">●</span>${cv3033Text(label)}</div>`;
+}
+function t4650PlainExperience(d,accent,limit,verticalDates){
+  return cv3033Arr(d.expItems).slice(0,limit||4).map(e=>{
+    const period=cv3033Date(e);
+    const lines=cv3033Lines(e.resp,2).concat(cv3033Lines(e.ach,1));
+    return `<div class="cvb" style="display:grid;grid-template-columns:${verticalDates?'26px 1fr':'1fr'};gap:9px;margin:0 0 15px;break-inside:avoid;page-break-inside:avoid;">
+      ${verticalDates?`<div style="font-size:7px;color:#444;letter-spacing:2px;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;">${cv3033Text(period)}</div>`:''}
+      <div style="min-width:0;${verticalDates?'border-left:1px solid #d5d7dc;padding-left:12px;':''}">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><strong style="font-size:9.4px;color:#30333a;line-height:1.25;">${cv3033Text(e.role||'Job Position')}</strong>${!verticalDates&&period?`<span style="font-size:7.5px;font-weight:800;white-space:nowrap;color:${accent};">${cv3033Text(period)}</span>`:''}</div>
+        ${e.company?`<div style="font-size:8px;font-style:italic;color:#555;margin:2px 0 5px;">${cv3033Text(e.company)}</div>`:''}
+        ${lines.map(x=>`<div style="font-size:8px;line-height:1.48;color:#555;margin-top:2px;">${verticalDates?'':`<span style="color:${accent};">•</span> `}${cv3033Text(x)}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function legacyFieldMapBuildT46(d){
+  const BLUE='#284796',PALE='#f1f2f4',TEXT='#33353b';
+  const contact=cv3033Contact(d,BLUE,false);
+  const education=cv3033Edu(d,BLUE,false,3);
+  const refs=cv3033Arr(d.refItems).slice(0,2).map(r=>`<div class="cvb" style="min-width:0;"><strong style="font-size:9px;color:${TEXT};">${cv3033Text(r.name||'Reference')}</strong>${r.title||r.company?`<div style="font-size:8px;font-style:italic;color:#666;">${cv3033Text([r.title,r.company].filter(Boolean).join(' · '))}</div>`:''}${r.phone?`<div style="font-size:7.8px;color:#666;">${cv3033Text(r.phone)}</div>`:''}${r.email?`<div style="font-size:7.5px;color:#666;word-break:break-all;">${cv3033Text(r.email)}</div>`:''}</div>`).join('');
+  const hobbies=cv3033Arr(d.projItems).slice(0,3).map(p=>`<div style="font-size:8.5px;color:#444;margin:0 0 5px;">${cv3033Text(p.name)}</div>`).join('');
+  return `<div class="cv-sheet" data-template-id="t46" style="min-height:297mm;background:#fff;display:flex;color:${TEXT};font-family:Montserrat,Arial,sans-serif;box-sizing:border-box;font-size:10px;">
+    <aside style="width:226px;min-width:226px;background:${PALE};padding:24px 22px 22px;box-sizing:border-box;">
+      <div style="height:306px;border:1px solid #9aa0ad;border-radius:90px 90px 72px 72px;padding:8px;box-sizing:border-box;margin-bottom:16px;">
+        <div style="height:100%;background:${BLUE};border-radius:82px 82px 65px 65px;padding:10px 12px 18px;box-sizing:border-box;text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center;">
+          <div style="margin:0 auto 10px;">${cv3033Photo(d,132,'3px solid #fff','')}</div>
+          <div style="width:30px;border-top:3px solid #fff;margin:0 0 10px;"></div>
+          <div style="font-size:15px;font-weight:900;text-transform:uppercase;line-height:1.05;">${cv3033Text(d.name||'Full Name')}</div>
+          <div style="font-size:8px;letter-spacing:.4px;margin-top:4px;">${cv3033Text(d.title||'Professional')}</div>
+        </div>
+      </div>
+      <section style="margin-bottom:15px;">${t4650Heading('Contact Me',BLUE,'pill')}<div style="padding:2px 4px;">${contact||'—'}</div></section>
+      ${education?`<section>${t4650Heading('My Education',BLUE,'pill')}${education}</section>`:''}
+    </aside>
+    <main style="flex:1;min-width:0;padding:58px 28px 26px 20px;box-sizing:border-box;">
+      ${d.summary?`<section class="cvb" style="margin-bottom:20px;">${t4650Heading('About Me',BLUE,'pill')}<p style="font-size:8.5px;line-height:1.55;margin:0;color:#444;">${cv3033Text(d.summary)}</p></section>`:''}
+      ${d.expItems.length?`<section style="margin-bottom:18px;">${t4650Heading('Work Experience',BLUE,'pill')}${t4650PlainExperience(d,BLUE,4,true)}</section>`:''}
+      ${refs?`<section class="cvb" style="margin-bottom:18px;">${t4650Heading('References',BLUE,'pill')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">${refs}</div></section>`:''}
+      <div style="display:grid;grid-template-columns:1fr 1.25fr;gap:22px;align-items:start;">
+        ${hobbies?`<section class="cvb">${t4650Heading('Hobbies',BLUE,'pill')}${hobbies}</section>`:'<div></div>'}
+        ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section class="cvb">${t4650Heading('Skills',BLUE,'pill')}${cv3033SkillsBars(d,BLUE,5,false)}</section>`:''}
+      </div>
+    </main>
+  </div>`;
+}
+
+function legacyFieldMapBuildT47(d){
+  const GOLD='#ffb52e',DARK='#3d3d3d',TEXT='#3a3a3a';
+  const sideHead=label=>`<div class="cvh" style="border:1.5px solid ${GOLD};border-radius:18px;color:#fff;height:29px;display:flex;align-items:center;padding:0 11px;margin:0 0 10px;font-size:10px;font-weight:900;text-transform:uppercase;"><span style="width:19px;height:19px;background:${GOLD};border-radius:50%;margin-left:-18px;margin-right:9px;display:grid;place-items:center;font-size:8px;">●</span>${label}</div>`;
+  return `<div class="cv-sheet" data-template-id="t47" style="min-height:297mm;background:${GOLD};padding:8px;box-sizing:border-box;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;">
+    <div style="min-height:calc(297mm - 16px);background:#fff;display:flex;">
+      <aside style="width:199px;min-width:199px;background:${DARK};color:#fff;box-sizing:border-box;">
+        <div style="background:${GOLD};height:173px;display:flex;justify-content:center;align-items:center;margin-bottom:15px;">${cv3033Photo(d,119,'5px solid #fff','box-shadow:0 2px 8px rgba(0,0,0,.35);')}</div>
+        <div style="padding:0 18px 18px;">
+          <section style="padding-bottom:14px;margin-bottom:15px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('Contact Me')}${cv3033Contact(d,GOLD,true)||'—'}</section>
+          ${d.refItems.length?`<section style="padding-bottom:14px;margin-bottom:16px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('References')}${cv3033Refs(d,GOLD,true,2)}</section>`:''}
+          ${d.eduItems.length?`<section>${sideHead('Education')}${cv3033Edu(d,GOLD,true,3)}</section>`:''}
+        </div>
+      </aside>
+      <main style="flex:1;min-width:0;padding:0 20px 24px 29px;box-sizing:border-box;">
+        <header style="height:142px;background:#f1f1f1;margin:47px -20px 25px -29px;padding:28px 22px;box-sizing:border-box;text-align:center;">
+          <div style="font-size:22px;font-weight:900;letter-spacing:1px;text-transform:uppercase;">${cv3033Text(d.name||'Full Name')}</div>
+          <div style="font-size:8.5px;letter-spacing:1.4px;margin-top:5px;text-transform:uppercase;">${cv3033Text(d.title||'Professional')}</div>
+        </header>
+        ${d.summary?`<section class="cvb" style="margin-bottom:20px;">${t4650Heading('About Me',GOLD,'outline')}<p style="margin:0 0 0 18px;border-left:1px solid ${GOLD};padding-left:13px;font-size:8.4px;line-height:1.58;color:#555;">${cv3033Text(d.summary)}</p></section>`:''}
+        ${d.expItems.length?`<section style="margin-bottom:18px;">${t4650Heading('Job Experience',GOLD,'outline')}<div style="margin-left:18px;border-left:1px solid ${GOLD};padding-left:14px;">${t4650PlainExperience(d,GOLD,4,false)}</div></section>`:''}
+        ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section class="cvb">${t4650Heading('Skills',GOLD,'outline')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;margin-left:18px;border-left:1px solid ${GOLD};padding-left:14px;">${cv3033SkillsBars(d,GOLD,6,false)}</div></section>`:''}
+      </main>
+    </div>
+  </div>`;
+}
+
+function legacyFieldMapBuildT48(d){
+  const BLUE='#08aee5',DARK='#3e3e3f',TEXT='#333438';
+  const band=label=>`<div class="cvh" style="background:${BLUE};color:#fff;font-size:10px;padding:5px 16px;margin:0 -18px 11px;text-transform:capitalize;position:relative;">${cv3033Text(label)}<span style="position:absolute;right:-7px;bottom:0;border-top:7px solid #087fa8;border-right:7px solid transparent;"></span></div>`;
+  const mainHead=label=>`<div class="cvh" style="font-size:10px;margin:0 0 10px;color:${TEXT};padding-bottom:7px;border-bottom:1px solid #999;">${cv3033Text(label)}</div>`;
+  const refs=cv3033Arr(d.refItems).slice(0,2).map(r=>`<div class="cvb"><strong style="font-size:8.6px;">${cv3033Text(r.name)}</strong><div style="font-size:7.5px;color:#555;line-height:1.45;">${cv3033Text([r.title,r.company].filter(Boolean).join(' / '))}${r.phone?'<br>Phone: '+cv3033Text(r.phone):''}${r.email?'<br>Email: '+cv3033Text(r.email):''}</div></div>`).join('');
+  return `<div class="cv-sheet" data-template-id="t48" style="min-height:297mm;background:#fff;display:flex;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;">
+    <aside style="width:141px;min-width:141px;background:${DARK};color:#fff;padding:29px 18px 20px;box-sizing:border-box;">
+      <div style="display:flex;justify-content:center;margin-bottom:24px;">${cv3033Photo(d,84,'none','')}</div>
+      <section style="margin-bottom:14px;">${band('Contact')}${cv3033Contact(d,BLUE,true)||'—'}</section>
+      ${d.eduItems.length?`<section style="margin-bottom:14px;">${band('Education')}${cv3033Edu(d,BLUE,true,3)}</section>`:''}
+      ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:14px;">${band('Skills')}${cv3033SkillsDots(d,'#fff',6,true)}</section>`:''}
+      ${d.languages?`<section>${band('Language')}${cv3033Langs(d,'#fff',true)}</section>`:''}
+    </aside>
+    <main style="flex:1;min-width:0;padding:49px 27px 24px;box-sizing:border-box;">
+      <header style="margin-bottom:39px;"><div style="font-size:25px;font-weight:900;letter-spacing:-.5px;line-height:1;">${cv3033Text(d.name||'Full Name')}</div><div style="font-size:10px;color:#555;margin-top:4px;">${cv3033Text(d.title||'Professional')}</div></header>
+      ${d.summary?`<section class="cvb" style="margin-bottom:17px;">${mainHead('About Me')}<p style="font-size:8px;line-height:1.48;color:#666;margin:0;">${cv3033Text(d.summary)}</p></section>`:''}
+      ${d.expItems.length?`<section style="margin-bottom:17px;">${mainHead('Experience')}${t4650PlainExperience(d,BLUE,4,false)}</section>`:''}
+      ${refs?`<section class="cvb">${mainHead('References')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">${refs}</div></section>`:''}
+    </main>
+  </div>`;
+}
+
+function legacyFieldMapBuildT49(d){
+  const GREY='#777777',LIGHT='#d9d9d9',TEXT='#3c3c3c';
+  const sideHead=label=>`<div class="cvh" style="font-size:9.5px;font-weight:900;text-transform:uppercase;border-top:1px solid #fff;padding-top:8px;margin:0 0 9px;color:#fff;">${cv3033Text(label)}</div>`;
+  const iconHead=label=>`<div class="cvh" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:900;text-transform:uppercase;margin:0 0 10px;"><span style="width:15px;height:15px;border-radius:50%;background:${GREY};color:#fff;display:grid;place-items:center;font-size:7px;">●</span>${cv3033Text(label)}</div>`;
+  return `<div class="cv-sheet" data-template-id="t49" style="min-height:297mm;background:#fff;display:flex;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;">
+    <aside style="width:168px;min-width:168px;background:${GREY};color:#fff;padding:30px 11px 22px;box-sizing:border-box;">
+      <div style="display:flex;justify-content:center;margin-bottom:43px;">${cv3033Photo(d,155,'2px solid #555','')}</div>
+      <section style="border-radius:78px 78px 0 0;padding:34px 22px 0;margin:0 -3px 20px;background:${GREY};border-top:1px solid rgba(255,255,255,.35);">${sideHead('Contact Me')}${cv3033Contact(d,'#555',true)||'—'}</section>
+      ${d.refItems.length?`<section style="padding:0 22px 9px;">${sideHead('References')}${cv3033Refs(d,'#555',true,2)}</section>`:''}
+      ${d.eduItems.length?`<section style="padding:0 22px;">${sideHead('Education')}${cv3033Edu(d,'#555',true,3)}</section>`:''}
+    </aside>
+    <main style="flex:1;min-width:0;padding:0 19px 24px;box-sizing:border-box;">
+      <header style="height:70px;background:${LIGHT};margin:0 -19px 24px;padding:17px 20px;box-sizing:border-box;">
+        <div style="font-size:22px;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:1px;">${cv3033Text(d.name||'Full Name')}</div>
+        <div style="font-size:8.5px;letter-spacing:1px;text-transform:uppercase;margin-top:5px;">${cv3033Text(d.title||'Professional')}</div>
+      </header>
+      ${d.summary?`<section class="cvb" style="margin-bottom:37px;">${iconHead('About Me')}<p style="font-size:8px;line-height:1.55;margin:0;color:#555;">${cv3033Text(d.summary)}</p></section>`:''}
+      ${d.expItems.length?`<section style="margin-bottom:25px;">${iconHead('Job Experience')}${t4650PlainExperience(d,'#555',4,false)}</section>`:''}
+      ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section class="cvb">${iconHead('Skills')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;">${cv3033SkillsBars(d,'#777',6,false)}</div></section>`:''}
+    </main>
+  </div>`;
+}
+
+function legacyFieldMapBuildT50(d){
+  const BLUE='#3866cc',PALE='#edf4ff',DARK='#292929',TEXT='#282828';
+  const head=label=>`<div class="cvh" style="font-size:13px;font-weight:900;color:${TEXT};padding-bottom:6px;border-bottom:1.5px solid #333;margin:0 0 10px;">${cv3033Text(label)}</div>`;
+  const smallHead=label=>`<div class="cvh" style="font-size:10.5px;font-weight:900;color:${BLUE};padding-bottom:6px;border-bottom:1.5px solid ${BLUE};margin:0 0 10px;">${cv3033Text(label)}</div>`;
+  return `<div class="cv-sheet" data-template-id="t50" style="min-height:297mm;background:#fff;font-family:Montserrat,Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;">
+    <header style="height:166px;background:${PALE};border-top:8px solid ${BLUE};border-bottom:8px solid ${DARK};display:flex;position:relative;box-sizing:border-box;overflow:hidden;">
+      <div style="width:181px;min-width:181px;background:${BLUE};clip-path:polygon(0 0,100% 0,76% 100%,28% 100%);position:relative;"><span style="position:absolute;left:0;bottom:0;border-left:50px solid ${DARK};border-top:150px solid transparent;"></span></div>
+      <div style="position:absolute;left:79px;top:18px;z-index:2;">${cv3033Photo(d,128,'5px solid #fff','box-shadow:0 0 0 1px #d7dce5;')}</div>
+      <div style="flex:1;padding:34px 22px 18px 39px;text-align:center;box-sizing:border-box;">
+        <div style="font-size:23px;font-weight:900;line-height:1;text-transform:uppercase;"><span style="color:${BLUE};">${cv3033Text((d.name||'Full Name').split(' ')[0])}</span> ${cv3033Text((d.name||'Full Name').split(' ').slice(1).join(' '))}</div>
+        <div style="font-size:10px;letter-spacing:2px;margin-top:7px;">${cv3033Text(d.title||'Professional')}</div>
+        ${d.summary?`<p style="font-size:7.5px;line-height:1.45;color:#666;margin:11px auto 0;max-width:255px;">${cv3033Text(d.summary)}</p>`:''}
+      </div>
+    </header>
+    <div style="display:flex;min-height:calc(297mm - 166px);">
+      <aside style="width:162px;min-width:162px;background:${PALE};padding:47px 26px 24px;box-sizing:border-box;">
+        <section style="margin-bottom:31px;">${smallHead('Contact')}${cv3033Contact(d,BLUE,false)||'—'}</section>
+        ${d.eduItems.length?`<section style="margin-bottom:30px;">${smallHead('Education')}${cv3033Edu(d,BLUE,false,3)}</section>`:''}
+        ${d.languages?`<section>${smallHead('Language')}${cv3033Langs(d,BLUE,false)}</section>`:''}
+      </aside>
+      <main style="flex:1;min-width:0;padding:15px 25px 25px 18px;box-sizing:border-box;">
+        ${d.summary?`<section class="cvb" style="margin-bottom:17px;">${head('About Me')}<p style="font-size:8px;line-height:1.5;color:#555;margin:0;">${cv3033Text(d.summary)}</p></section>`:''}
+        ${d.expItems.length?`<section style="margin-bottom:18px;">${head('Experience')}${t4650PlainExperience(d,BLUE,4,false)}</section>`:''}
+        ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section class="cvb">${head('Pro Skills')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 30px;">${cv3033SkillsBars(d,BLUE,6,false)}</div></section>`:''}
+      </main>
+    </div>
+  </div>`;
+}
+
+/* Complete, uncapped field mapping used only by templates t46-t50. */
+function cv4650ApplyFor(d,color,light){
+  if(!d.applyFor)return '';
+  return `<div style="font-size:7.8px;line-height:1.35;margin-top:6px;color:${light?'rgba(255,255,255,.82)':color};font-weight:700;letter-spacing:.2px;">Applying for: ${cv3033Text(d.applyFor)}</div>`;
+}
+function cv4650Personal(d,color,light){
+  const rows=[];
+  if(d.nationality)rows.push(['Nationality',d.nationality]);
+  if(d.dob)rows.push(['Date of Birth',d.dob]);
+  if(d.gender)rows.push(['Gender',d.gender]);
+  return rows.map(r=>`<div class="cvb" style="margin:0 0 6px;break-inside:avoid;page-break-inside:avoid;"><div style="font-size:7px;text-transform:uppercase;letter-spacing:.5px;color:${light?'rgba(255,255,255,.58)':color};font-weight:800;">${r[0]}</div><div style="font-size:8.2px;line-height:1.35;color:${light?'rgba(255,255,255,.88)':'#4b5563'};overflow-wrap:anywhere;">${cv3033Text(r[1])}</div></div>`).join('');
+}
+function cv4650Education(d,color,light){
+  return cv3033Arr(d.eduItems).map(e=>{
+    const period=[e.from,e.to||(e.status==='In Progress'?'Present':'')].filter(Boolean).join(' - ');
+    return `<div class="cvb" style="margin:0 0 10px;padding:0 0 8px;border-bottom:1px solid ${light?'rgba(255,255,255,.16)':'#e5e7eb'};break-inside:avoid;page-break-inside:avoid;">
+      <div style="font-size:9px;font-weight:900;line-height:1.3;color:${light?'#fff':'#30333a'};">${cv3033Text(e.major||e.level||'Education')}</div>
+      ${e.level&&e.major?`<div style="font-size:7.8px;color:${light?'rgba(255,255,255,.72)':color};font-weight:700;">${cv3033Text(e.level)}</div>`:''}
+      ${e.school?`<div style="font-size:8px;line-height:1.35;color:${light?'rgba(255,255,255,.78)':'#5b6470'};">${cv3033Text(e.school)}</div>`:''}
+      ${period?`<div style="font-size:7.5px;color:${light?'rgba(255,255,255,.62)':'#6b7280'};">${cv3033Text(period)}</div>`:''}
+      ${e.gpa?`<div style="font-size:7.7px;color:${light?'#fff':color};font-weight:800;margin-top:2px;">GPA: ${cv3033Text(e.gpa)}</div>`:''}
+    </div>`;
+  }).join('');
+}
+function cv4650Experience(d,accent,verticalDates){
+  return cv3033Arr(d.expItems).map(e=>{
+    const period=cv3033Date(e);
+    const responsibilities=cv3033Safe(e.resp).split('\n').map(x=>x.trim()).filter(Boolean);
+    const achievements=cv3033Safe(e.ach).split('\n').map(x=>x.trim()).filter(Boolean);
+    const list=(label,items)=>items.length?`<div style="margin-top:6px;"><div style="font-size:7.4px;font-weight:900;color:${accent};text-transform:uppercase;letter-spacing:.45px;margin-bottom:2px;">${label}</div>${items.map(x=>`<div style="display:flex;gap:5px;margin:0 0 2px;font-size:8px;line-height:1.48;color:#555;"><span style="color:${accent};flex:0 0 auto;">•</span><span style="min-width:0;overflow-wrap:anywhere;">${cv3033Text(x)}</span></div>`).join('')}</div>`:'';
+    return `<article class="cvb" style="display:grid;grid-template-columns:${verticalDates?'26px 1fr':'1fr'};gap:9px;margin:0 0 15px;break-inside:avoid;page-break-inside:avoid;">
+      ${verticalDates?`<div style="font-size:7px;color:#444;letter-spacing:1.4px;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;">${cv3033Text(period)}</div>`:''}
+      <div style="min-width:0;${verticalDates?'border-left:1px solid #d5d7dc;padding-left:12px;':''}">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><strong style="font-size:9.4px;color:#30333a;line-height:1.25;overflow-wrap:anywhere;">${cv3033Text(e.role||'Job Position')}</strong>${!verticalDates&&period?`<span style="font-size:7.4px;font-weight:800;white-space:nowrap;color:${accent};">${cv3033Text(period)}</span>`:''}</div>
+        ${e.company?`<div style="font-size:8px;font-style:italic;color:#555;margin-top:2px;">${cv3033Text(e.company)}</div>`:''}
+        ${list('Responsibilities',responsibilities)}${list('Achievements',achievements)}
+      </div>
+    </article>`;
+  }).join('');
+}
+function cv4650Skills(d,color,light){
+  return [].concat(cv3033Arr(d.techSkillsArr),cv3033Arr(d.softSkillsArr)).map(s=>{
+    const pct=Math.max(20,Math.min(100,Number(s.level||3)*20));
+    return `<div class="cvb" style="margin:0 0 8px;break-inside:avoid;page-break-inside:avoid;"><div style="font-size:8px;font-weight:800;color:${light?'rgba(255,255,255,.88)':'#444'};margin-bottom:3px;overflow-wrap:anywhere;">${cv3033Text(s.name)}</div><div style="height:4px;background:${light?'rgba(255,255,255,.22)':'#e2e5ea'};border-radius:10px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:${color};"></div></div></div>`;
+  }).join('');
+}
+function cv4650Languages(d,color,light){
+  return cv3033Safe(d.languages).split(';').map(x=>x.trim()).filter(Boolean).map(l=>`<div class="cvb" style="display:flex;gap:6px;align-items:flex-start;margin:0 0 6px;break-inside:avoid;page-break-inside:avoid;"><span style="width:6px;height:6px;border-radius:50%;background:${color};margin-top:3px;flex:0 0 6px;"></span><span style="font-size:8.2px;line-height:1.35;color:${light?'rgba(255,255,255,.86)':'#4b5563'};overflow-wrap:anywhere;">${cv3033Text(l)}</span></div>`).join('');
+}
+function cv4650References(d,color,light){
+  return cv3033Arr(d.refItems).map(r=>`<div class="cvb" style="margin:0 0 10px;break-inside:avoid;page-break-inside:avoid;"><strong style="font-size:8.8px;color:${light?'#fff':'#30333a'};">${cv3033Text(r.name||'Reference')}</strong>${r.title||r.company?`<div style="font-size:7.7px;color:${light?'rgba(255,255,255,.74)':'#666'};">${cv3033Text([r.title,r.company].filter(Boolean).join(' · '))}</div>`:''}${r.phone?`<div style="font-size:7.5px;color:${light?'rgba(255,255,255,.68)':'#666'};">${cv3033Text(r.phone)}</div>`:''}${r.email?`<div style="font-size:7.5px;color:${light?'rgba(255,255,255,.68)':'#666'};overflow-wrap:anywhere;">${cv3033Text(r.email)}</div>`:''}</div>`).join('');
+}
+function cv4650Projects(d,color){
+  return cv3033Arr(d.projItems).map(p=>`<div class="cvb" style="margin:0 0 10px;break-inside:avoid;page-break-inside:avoid;"><strong style="font-size:8.8px;color:#30333a;">${cv3033Text(p.name||'Project')}</strong>${p.role?`<div style="font-size:7.8px;color:${color};font-weight:800;">${cv3033Text(p.role)}</div>`:''}${p.desc?`<div style="font-size:8px;line-height:1.45;color:#5b6470;margin-top:3px;">${cv3033Text(p.desc)}</div>`:''}</div>`).join('');
+}
+function cv4650Awards(d,color){
+  return cv3033Arr(d.awardItems).map(a=>`<div class="cvb" style="margin:0 0 9px;break-inside:avoid;page-break-inside:avoid;"><strong style="font-size:8.7px;color:#30333a;">${cv3033Text(a.name||'Award')}</strong><div style="font-size:7.8px;color:#666;">${cv3033Text([a.org,a.year].filter(Boolean).join(' · '))}</div></div>`).join('');
+}
+function cv4650Certifications(d,color){
+  return cv3033Arr(d.certItems).map(c=>`<div class="cvb" style="margin:0 0 9px;break-inside:avoid;page-break-inside:avoid;"><strong style="font-size:8.7px;color:#30333a;">${cv3033Text(c.name||'Certification')}</strong><div style="font-size:7.8px;color:#666;">${cv3033Text([c.org,c.year].filter(Boolean).join(' · '))}</div></div>`).join('');
+}
+
+function buildT46(d){
+  const BLUE='#284796',PALE='#f1f2f4',TEXT='#33353b';
+  const personal=cv4650Personal(d,BLUE,false),languages=cv4650Languages(d,BLUE,false),education=cv4650Education(d,BLUE,false);
+  const refs=cv4650References(d,BLUE,false),projects=cv4650Projects(d,BLUE),awards=cv4650Awards(d,BLUE),certs=cv4650Certifications(d,BLUE);
+  return `<div class="cv-sheet" data-template-id="t46" data-multipage="true" style="min-height:297mm;background:#fff;display:flex;color:${TEXT};font-family:Montserrat,Arial,sans-serif;box-sizing:border-box;font-size:10px;overflow:visible;break-inside:auto;page-break-inside:auto;">
+    <aside style="width:226px;min-width:226px;background:${PALE};padding:24px 22px;box-sizing:border-box;">
+      <div class="cvb" style="min-height:316px;display:flex;border:1px solid #9aa0ad;border-radius:90px 90px 72px 72px;padding:8px;box-sizing:border-box;margin-bottom:16px;break-inside:avoid;"><div style="flex:1;min-width:0;background:${BLUE};border-radius:82px 82px 65px 65px;padding:10px 12px 14px;text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center;box-sizing:border-box;">${cv3033Photo(d,128,'3px solid #fff','margin-bottom:9px;')}<div style="width:30px;border-top:3px solid #fff;margin-bottom:9px;"></div><div style="font-size:15px;font-weight:900;text-transform:uppercase;line-height:1.05;">${cv3033Text(d.name||'Full Name')}</div><div style="font-size:8px;margin-top:4px;">${cv3033Text(d.title||'Professional')}</div>${cv4650ApplyFor(d,'#fff',true)}</div></div>
+      <section style="margin-bottom:15px;">${t4650Heading('Contact Me',BLUE,'pill')}${cv3033Contact(d,BLUE,false)||'—'}</section>
+      ${personal?`<section style="margin-bottom:15px;">${t4650Heading('Personal Details',BLUE,'pill')}${personal}</section>`:''}
+      ${education?`<section style="margin-bottom:15px;">${t4650Heading('My Education',BLUE,'pill')}${education}</section>`:''}
+      ${languages?`<section>${t4650Heading('Languages',BLUE,'pill')}${languages}</section>`:''}
+    </aside>
+    <main style="flex:1;min-width:0;padding:58px 28px 26px 20px;box-sizing:border-box;overflow:visible;">
+      ${d.summary?`<section style="margin-bottom:20px;">${t4650Heading('About Me',BLUE,'pill')}<p style="font-size:8.5px;line-height:1.55;margin:0;color:#444;">${cv3033Text(d.summary)}</p></section>`:''}
+      ${d.expItems.length?`<section style="margin-bottom:18px;">${t4650Heading('Work Experience',BLUE,'pill')}${cv4650Experience(d,BLUE,true)}</section>`:''}
+      ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:18px;">${t4650Heading('Skills',BLUE,'pill')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;">${cv4650Skills(d,BLUE,false)}</div></section>`:''}
+      ${projects?`<section style="margin-bottom:18px;">${t4650Heading('Projects / Hobbies',BLUE,'pill')}${projects}</section>`:''}
+      ${awards?`<section style="margin-bottom:18px;">${t4650Heading('Awards',BLUE,'pill')}${awards}</section>`:''}
+      ${certs?`<section style="margin-bottom:18px;">${t4650Heading('Certifications',BLUE,'pill')}${certs}</section>`:''}
+      ${refs?`<section>${t4650Heading('References',BLUE,'pill')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;">${refs}</div></section>`:''}
+    </main>
+  </div>`;
+}
+
+function buildT47(d){
+  const GOLD='#ffb52e',DARK='#3d3d3d',TEXT='#3a3a3a';
+  const sideHead=label=>`<div class="cvh" style="border:1.5px solid ${GOLD};border-radius:18px;color:#fff;min-height:29px;display:flex;align-items:center;padding:4px 11px;margin:0 0 10px;font-size:10px;font-weight:900;text-transform:uppercase;box-sizing:border-box;"><span style="width:19px;height:19px;background:${GOLD};border-radius:50%;margin-left:-18px;margin-right:9px;display:grid;place-items:center;font-size:8px;flex:0 0 19px;">●</span>${label}</div>`;
+  const personal=cv4650Personal(d,GOLD,true),languages=cv4650Languages(d,GOLD,true),refs=cv4650References(d,GOLD,true),education=cv4650Education(d,GOLD,true);
+  const projects=cv4650Projects(d,GOLD),awards=cv4650Awards(d,GOLD),certs=cv4650Certifications(d,GOLD);
+  return `<div class="cv-sheet" data-template-id="t47" data-multipage="true" style="min-height:297mm;background:${GOLD};padding:8px;box-sizing:border-box;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;overflow:visible;break-inside:auto;page-break-inside:auto;"><div style="min-height:calc(297mm - 16px);background:#fff;display:flex;overflow:visible;">
+    <aside style="width:199px;min-width:199px;background:${DARK};color:#fff;box-sizing:border-box;"><div class="cvb" style="background:${GOLD};height:173px;display:flex;justify-content:center;align-items:center;margin-bottom:15px;break-inside:avoid;">${cv3033Photo(d,119,'5px solid #fff','box-shadow:0 2px 8px rgba(0,0,0,.35);')}</div><div style="padding:0 18px 18px;"><section style="padding-bottom:14px;margin-bottom:15px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('Contact Me')}${cv3033Contact(d,GOLD,true)||'—'}</section>${personal?`<section style="padding-bottom:14px;margin-bottom:15px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('Personal Details')}${personal}</section>`:''}${refs?`<section style="padding-bottom:14px;margin-bottom:15px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('References')}${refs}</section>`:''}${education?`<section style="padding-bottom:14px;margin-bottom:15px;border-bottom:1px dashed rgba(255,255,255,.6);">${sideHead('Education')}${education}</section>`:''}${languages?`<section>${sideHead('Languages')}${languages}</section>`:''}</div></aside>
+    <main style="flex:1;min-width:0;padding:0 20px 24px 29px;box-sizing:border-box;overflow:visible;"><header class="cvb" style="min-height:142px;background:#f1f1f1;margin:47px -20px 25px -29px;padding:28px 22px;box-sizing:border-box;text-align:center;break-inside:avoid;"><div style="font-size:22px;font-weight:900;letter-spacing:1px;text-transform:uppercase;">${cv3033Text(d.name||'Full Name')}</div><div style="font-size:8.5px;letter-spacing:1.4px;margin-top:5px;text-transform:uppercase;">${cv3033Text(d.title||'Professional')}</div>${cv4650ApplyFor(d,GOLD,false)}</header>
+      ${d.summary?`<section style="margin-bottom:20px;">${t4650Heading('About Me',GOLD,'outline')}<p style="margin:0 0 0 18px;border-left:1px solid ${GOLD};padding-left:13px;font-size:8.4px;line-height:1.58;color:#555;">${cv3033Text(d.summary)}</p></section>`:''}
+      ${d.expItems.length?`<section style="margin-bottom:18px;">${t4650Heading('Job Experience',GOLD,'outline')}<div style="margin-left:18px;border-left:1px solid ${GOLD};padding-left:14px;">${cv4650Experience(d,GOLD,false)}</div></section>`:''}
+      ${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:18px;">${t4650Heading('Skills',GOLD,'outline')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;margin-left:18px;border-left:1px solid ${GOLD};padding-left:14px;">${cv4650Skills(d,GOLD,false)}</div></section>`:''}
+      ${projects?`<section style="margin-bottom:18px;">${t4650Heading('Projects / Hobbies',GOLD,'outline')}${projects}</section>`:''}${awards?`<section style="margin-bottom:18px;">${t4650Heading('Awards',GOLD,'outline')}${awards}</section>`:''}${certs?`<section>${t4650Heading('Certifications',GOLD,'outline')}${certs}</section>`:''}
+    </main></div></div>`;
+}
+
+function buildT48(d){
+  const BLUE='#08aee5',DARK='#3e3e3f',TEXT='#333438';
+  const band=label=>`<div class="cvh" style="background:${BLUE};color:#fff;font-size:10px;padding:5px 16px;margin:0 -18px 11px;position:relative;">${cv3033Text(label)}<span style="position:absolute;right:-7px;bottom:0;border-top:7px solid #087fa8;border-right:7px solid transparent;"></span></div>`;
+  const mainHead=label=>`<div class="cvh" style="font-size:10px;margin:0 0 10px;color:${TEXT};padding-bottom:7px;border-bottom:1px solid #999;">${cv3033Text(label)}</div>`;
+  const personal=cv4650Personal(d,BLUE,true),education=cv4650Education(d,BLUE,true),languages=cv4650Languages(d,'#fff',true),refs=cv4650References(d,BLUE,false),projects=cv4650Projects(d,BLUE),awards=cv4650Awards(d,BLUE),certs=cv4650Certifications(d,BLUE);
+  return `<div class="cv-sheet" data-template-id="t48" data-multipage="true" style="min-height:297mm;background:#fff;display:flex;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;overflow:visible;break-inside:auto;page-break-inside:auto;">
+    <aside style="width:141px;min-width:141px;background:${DARK};color:#fff;padding:29px 18px 20px;box-sizing:border-box;"><div class="cvb" style="display:flex;justify-content:center;margin-bottom:24px;break-inside:avoid;">${cv3033Photo(d,84,'none','')}</div><section style="margin-bottom:14px;">${band('Contact')}${cv3033Contact(d,BLUE,true)||'—'}</section>${personal?`<section style="margin-bottom:14px;">${band('Personal Details')}${personal}</section>`:''}${education?`<section style="margin-bottom:14px;">${band('Education')}${education}</section>`:''}${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:14px;">${band('Skills')}${cv4650Skills(d,'#fff',true)}</section>`:''}${languages?`<section>${band('Language')}${languages}</section>`:''}</aside>
+    <main style="flex:1;min-width:0;padding:49px 27px 24px;box-sizing:border-box;overflow:visible;"><header class="cvb" style="margin-bottom:39px;break-inside:avoid;"><div style="font-size:25px;font-weight:900;letter-spacing:-.5px;line-height:1;">${cv3033Text(d.name||'Full Name')}</div><div style="font-size:10px;color:#555;margin-top:4px;">${cv3033Text(d.title||'Professional')}</div>${cv4650ApplyFor(d,BLUE,false)}</header>
+      ${d.summary?`<section style="margin-bottom:17px;">${mainHead('About Me')}<p style="font-size:8px;line-height:1.48;color:#666;margin:0;">${cv3033Text(d.summary)}</p></section>`:''}${d.expItems.length?`<section style="margin-bottom:17px;">${mainHead('Experience')}${cv4650Experience(d,BLUE,false)}</section>`:''}
+      ${projects?`<section style="margin-bottom:17px;">${mainHead('Projects / Hobbies')}${projects}</section>`:''}${awards?`<section style="margin-bottom:17px;">${mainHead('Awards')}${awards}</section>`:''}${certs?`<section style="margin-bottom:17px;">${mainHead('Certifications')}${certs}</section>`:''}${refs?`<section>${mainHead('References')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">${refs}</div></section>`:''}
+    </main>
+  </div>`;
+}
+
+function buildT49(d){
+  const GREY='#777777',LIGHT='#d9d9d9',TEXT='#3c3c3c';
+  const sideHead=label=>`<div class="cvh" style="font-size:9.5px;font-weight:900;text-transform:uppercase;border-top:1px solid #fff;padding-top:8px;margin:0 0 9px;color:#fff;">${cv3033Text(label)}</div>`;
+  const iconHead=label=>`<div class="cvh" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:900;text-transform:uppercase;margin:0 0 10px;"><span style="width:15px;height:15px;border-radius:50%;background:${GREY};color:#fff;display:grid;place-items:center;font-size:7px;">●</span>${cv3033Text(label)}</div>`;
+  const personal=cv4650Personal(d,'#fff',true),refs=cv4650References(d,'#fff',true),education=cv4650Education(d,'#fff',true),languages=cv4650Languages(d,'#fff',true),projects=cv4650Projects(d,GREY),awards=cv4650Awards(d,GREY),certs=cv4650Certifications(d,GREY);
+  return `<div class="cv-sheet" data-template-id="t49" data-multipage="true" style="min-height:297mm;background:#fff;display:flex;font-family:Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;overflow:visible;break-inside:auto;page-break-inside:auto;">
+    <aside style="width:168px;min-width:168px;background:${GREY};color:#fff;padding:30px 11px 22px;box-sizing:border-box;"><div class="cvb" style="display:flex;justify-content:center;margin-bottom:43px;break-inside:avoid;">${cv3033Photo(d,155,'2px solid #555','')}</div><section style="border-radius:78px 78px 0 0;padding:34px 22px 0;margin:0 -3px 20px;border-top:1px solid rgba(255,255,255,.35);">${sideHead('Contact Me')}${cv3033Contact(d,'#555',true)||'—'}</section>${personal?`<section style="padding:0 22px 9px;">${sideHead('Personal Details')}${personal}</section>`:''}${refs?`<section style="padding:0 22px 9px;">${sideHead('References')}${refs}</section>`:''}${education?`<section style="padding:0 22px 9px;">${sideHead('Education')}${education}</section>`:''}${languages?`<section style="padding:0 22px;">${sideHead('Languages')}${languages}</section>`:''}</aside>
+    <main style="flex:1;min-width:0;padding:0 19px 24px;box-sizing:border-box;overflow:visible;"><header class="cvb" style="min-height:82px;background:${LIGHT};margin:0 -19px 24px;padding:14px 20px;box-sizing:border-box;break-inside:avoid;"><div style="font-size:22px;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:1px;">${cv3033Text(d.name||'Full Name')}</div><div style="font-size:8.5px;letter-spacing:1px;text-transform:uppercase;margin-top:5px;">${cv3033Text(d.title||'Professional')}</div>${cv4650ApplyFor(d,GREY,false)}</header>
+      ${d.summary?`<section style="margin-bottom:25px;">${iconHead('About Me')}<p style="font-size:8px;line-height:1.55;margin:0;color:#555;">${cv3033Text(d.summary)}</p></section>`:''}${d.expItems.length?`<section style="margin-bottom:25px;">${iconHead('Job Experience')}${cv4650Experience(d,GREY,false)}</section>`:''}${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:20px;">${iconHead('Skills')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;">${cv4650Skills(d,GREY,false)}</div></section>`:''}${projects?`<section style="margin-bottom:20px;">${iconHead('Projects / Hobbies')}${projects}</section>`:''}${awards?`<section style="margin-bottom:20px;">${iconHead('Awards')}${awards}</section>`:''}${certs?`<section>${iconHead('Certifications')}${certs}</section>`:''}
+    </main>
+  </div>`;
+}
+
+function buildT50(d){
+  const BLUE='#3866cc',PALE='#edf4ff',DARK='#292929',TEXT='#282828';
+  const head=label=>`<div class="cvh" style="font-size:13px;font-weight:900;color:${TEXT};padding-bottom:6px;border-bottom:1.5px solid #333;margin:0 0 10px;">${cv3033Text(label)}</div>`;
+  const smallHead=label=>`<div class="cvh" style="font-size:10.5px;font-weight:900;color:${BLUE};padding-bottom:6px;border-bottom:1.5px solid ${BLUE};margin:0 0 10px;">${cv3033Text(label)}</div>`;
+  const personal=cv4650Personal(d,BLUE,false),education=cv4650Education(d,BLUE,false),languages=cv4650Languages(d,BLUE,false),refs=cv4650References(d,BLUE,false),projects=cv4650Projects(d,BLUE),awards=cv4650Awards(d,BLUE),certs=cv4650Certifications(d,BLUE);
+  const nameParts=(d.name||'Full Name').split(' ');
+  return `<div class="cv-sheet" data-template-id="t50" data-multipage="true" style="min-height:297mm;background:#fff;font-family:Montserrat,Arial,sans-serif;color:${TEXT};font-size:10px;box-sizing:border-box;overflow:visible;break-inside:auto;page-break-inside:auto;">
+    <header class="cvb" style="min-height:166px;background:${PALE};border-top:8px solid ${BLUE};border-bottom:8px solid ${DARK};display:flex;position:relative;box-sizing:border-box;overflow:hidden;break-inside:avoid;"><div style="width:181px;min-width:181px;background:${BLUE};clip-path:polygon(0 0,100% 0,76% 100%,28% 100%);position:relative;"><span style="position:absolute;left:0;bottom:0;border-left:50px solid ${DARK};border-top:150px solid transparent;"></span></div><div style="position:absolute;left:79px;top:18px;z-index:2;">${cv3033Photo(d,128,'5px solid #fff','box-shadow:0 0 0 1px #d7dce5;')}</div><div style="flex:1;padding:34px 22px 18px 39px;text-align:center;box-sizing:border-box;"><div style="font-size:23px;font-weight:900;line-height:1;text-transform:uppercase;"><span style="color:${BLUE};">${cv3033Text(nameParts[0])}</span> ${cv3033Text(nameParts.slice(1).join(' '))}</div><div style="font-size:10px;letter-spacing:2px;margin-top:7px;">${cv3033Text(d.title||'Professional')}</div>${cv4650ApplyFor(d,BLUE,false)}</div></header>
+    <div style="display:flex;min-height:calc(297mm - 166px);overflow:visible;"><aside style="width:162px;min-width:162px;background:${PALE};padding:47px 26px 24px;box-sizing:border-box;"><section style="margin-bottom:31px;">${smallHead('Contact')}${cv3033Contact(d,BLUE,false)||'—'}</section>${personal?`<section style="margin-bottom:30px;">${smallHead('Personal Details')}${personal}</section>`:''}${education?`<section style="margin-bottom:30px;">${smallHead('Education')}${education}</section>`:''}${languages?`<section>${smallHead('Language')}${languages}</section>`:''}</aside>
+      <main style="flex:1;min-width:0;padding:15px 25px 25px 18px;box-sizing:border-box;overflow:visible;">${d.summary?`<section style="margin-bottom:17px;">${head('About Me')}<p style="font-size:8px;line-height:1.5;color:#555;margin:0;">${cv3033Text(d.summary)}</p></section>`:''}${d.expItems.length?`<section style="margin-bottom:18px;">${head('Experience')}${cv4650Experience(d,BLUE,false)}</section>`:''}${(d.techSkillsArr.length||d.softSkillsArr.length)?`<section style="margin-bottom:18px;">${head('Pro Skills')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 30px;">${cv4650Skills(d,BLUE,false)}</div></section>`:''}${projects?`<section style="margin-bottom:18px;">${head('Projects / Hobbies')}${projects}</section>`:''}${awards?`<section style="margin-bottom:18px;">${head('Awards')}${awards}</section>`:''}${certs?`<section style="margin-bottom:18px;">${head('Certifications')}${certs}</section>`:''}${refs?`<section>${head('References')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;">${refs}</div></section>`:''}</main>
     </div>
   </div>`;
 }
@@ -4467,7 +5020,8 @@ const TEMPLATE_META = {
   t46:{style:'corporate',color:'dark',featured:true},
   t47:{style:'creative',color:'orange',featured:true},
   t48:{style:'corporate',color:'blue',featured:true},
-  t49:{style:'minimal',color:'blue',featured:true}
+  t49:{style:'corporate',color:'dark',featured:true},
+  t50:{style:'corporate',color:'blue',featured:true}
 };
 
 let activeTemplateCategory='all';
@@ -5260,7 +5814,7 @@ function downloadCV() {
   const txId  = window.downloadTxId;
   const token = window.downloadToken;
   if (!txId || !token) {
-    alert('Download not ready. If you have already paid, please contact us on Telegram @mycvkh.');
+    alert('Download not ready. If you have already paid, please contact us: Email mycvkh@gmail.com or Tel 017 400 044.');
     return;
   }
 
@@ -5335,7 +5889,7 @@ function downloadReceipt() {
   const txId  = window.downloadTxId;
   const token = window.downloadToken;
   if (!txId || !token) {
-    alert('Receipt not available. Please contact us on Telegram @mycvkh.');
+    alert('Receipt not available. Please contact us: Email mycvkh@gmail.com or Tel 017 400 044.');
     return;
   }
   window.open(`${BACKEND_URL}/api/receipt/${txId}?token=${token}`, '_blank');
@@ -5388,6 +5942,10 @@ function _quillParseLines(html){
     const c=el.innerHTML.replace(/<br\s*\/?>/gi,'').trim();
     if(c&&c!=='<br>')lines.push(c);
   });
+  if(!lines.length&&!d.querySelector('p,li')){
+    const plain=d.textContent.trim();
+    if(plain)lines.push(plain);
+  }
   return lines;
 }
 function quillHTMLtoText(html){const l=_quillParseLines(html);return l?l.join(' '):''}
@@ -5477,7 +6035,7 @@ function moveItem(btn,dir,listId,itemClass){
 // Sample data is manual only. It will not auto-fill when users open the website.
 function fillSampleData(){
   const set=(id,val)=>{const el=document.getElementById(id);if(el)el.value=val;};
-  set('in-name','');
+  set('in-name','Sok Dara');
   set('in-job-title','Marketing Manager');
   set('in-apply-for','Senior Marketing Manager');
   set('in-phone','012 345 678');
@@ -5490,7 +6048,7 @@ function fillSampleData(){
   set('in-marital','Single');
   set('in-driving','Yes');
   set('in-portfolio','sokdara.com');
-  set('in-objective','');
+  set('in-objective','Motivated and detail-oriented professional seeking an opportunity to grow and contribute to a dynamic organization.');
 
 
   // Tech skills
@@ -6171,10 +6729,39 @@ window.addEventListener('beforeunload',function(e){
 </div>
 <div style="flex: 1; min-width: 250px;">
 <h3 style="color: #ffffff; font-size: 16px; margin-bottom: 10px; font-weight: 600;">Support</h3>
-<p style="margin-bottom: 8px;">Email: <a href="mailto:support@mycvkh.com" style="color: #60a5fa; text-decoration: none;">support@mycvkh.com</a></p>
-<p>Telegram: <a href="https://t.me/yourtelegram" style="color: #60a5fa; text-decoration: none;" target="_blank">@MyCVKH_Support</a></p>
+<p style="margin-bottom: 8px;">Email: <a href="mailto:mycvkh@gmail.com" style="color: #60a5fa; text-decoration: none;">mycvkh@gmail.com</a></p>
+<p>Tel: <a href="tel:017400044" style="color: #60a5fa; text-decoration: none;">017 400 044</a></p>
 </div>
 </div>
 </footer>
+<script>
+/* Isolated UI reveal enhancement: only adds presentation classes to landing elements. */
+(function initUIMotion(){
+  const root=document.getElementById('landing-home');
+  if(!root)return;
+  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const targets=root.querySelectorAll('.landing-kicker,.landing-hero h1,.landing-hero>div>p,.landing-cta-row,.landing-stat,.hero-resume-stage,.landing-section-head,.how-card,.why-card,.audience-card,.price-card');
+  let observer;
+  function syncMotion(){
+    if(observer)observer.disconnect();
+    targets.forEach(el=>{
+      el.classList.add('ui-reveal');
+      el.classList.remove('ui-visible');
+      const siblings=el.parentElement.children;
+      const index=Array.prototype.indexOf.call(siblings,el);
+      el.style.setProperty('--ui-delay',Math.min(index,3)*55+'ms');
+    });
+    if(motion.matches||!('IntersectionObserver' in window))return;
+    observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('ui-visible');observer.unobserve(entry.target);}
+      });
+    },{threshold:0.08});
+    targets.forEach(el=>observer.observe(el));
+  }
+  syncMotion();
+  if(motion.addEventListener)motion.addEventListener('change',syncMotion);
+})();
+</script>
 </body>
 </html>
